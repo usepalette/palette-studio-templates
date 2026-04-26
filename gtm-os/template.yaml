@@ -1,0 +1,14 @@
+name: GTM-OS
+slug: gtm-os
+version: 1.0.0
+author: Palette
+description: Your GTM as a file system — foundations, work, accounts, playbooks, and more.
+tags: [gtm, sales, marketing, workspace]
+license: MIT
+
+requires:
+  palette_studio: ">=0.5"
+
+notes: |
+  After install, run /onboard in Claude Code. It walks through your company,
+  product, and team to fill the templates in.
