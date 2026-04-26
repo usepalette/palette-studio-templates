@@ -3,6 +3,7 @@ slug: gtm-os
 version: 1.0.0
 author: Palette
 description: Your GTM as a file system — foundations, work, accounts, playbooks, and more.
+logo: logo.png
 tags: [gtm, sales, marketing, workspace]
 license: MIT
 
