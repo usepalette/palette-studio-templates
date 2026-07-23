@@ -30,7 +30,7 @@ When you install this workflow, an agent will:
    the Palette MCP or project files where it can, and asking you for the rest
    in one short round.
 
-The skill and the folder templates are placed as-is. Studio creates a
+The skill and the folder templates are placed as-is. Palette Desktop creates a
 checkpoint right before install so you can revert.
 
 ## After install

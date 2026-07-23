@@ -1,7 +1,7 @@
 name: Content
 slug: content
 type: workflow
-version: 1.0.0
+version: 1.0.1
 author: Palette
 description: A content system for writers and marketers — start drafts for a target channel, refine them against your own playbook, check copy against your brand voice, plan distribution, and keep a log of what you've shipped. Driven by a /content skill.
 logo: logo.png

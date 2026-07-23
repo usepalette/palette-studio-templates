@@ -35,7 +35,7 @@ When you install this workflow, an agent will:
    rest in one short round.
 
 The skill and the HTML template are placed as-is — no customization needed.
-Studio creates a checkpoint right before install so you can revert.
+Palette Desktop creates a checkpoint right before install so you can revert.
 
 ## After install
 

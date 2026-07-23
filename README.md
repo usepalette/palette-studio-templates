@@ -1,10 +1,11 @@
-# Palette Studio Templates
+# Palette Desktop Templates
 
-A public catalog of templates for [Palette Studio](https://palette.team) — folder structures, skills, and playbooks you can install in one click from the Templates browser.
+A public catalog of templates for [Palette Desktop](https://palette.team) — folder structures, skills, and playbooks you can install in one click from the Templates browser.
 
 ## Templates
 
 - [GTM-OS](./gtm-os/) — Your GTM as a file system
+- [Project OS](./project-os/) — Run a single project or client engagement, with a live dashboard
 - [Accounts](./accounts/) — Track accounts, log meetings, and prep for calls
 - [Content](./content/) — Draft, voice-check, and distribute the writing you ship
 - [Competitor Analysis](./competitor-analysis/) — Structured competitor tracking
@@ -13,7 +14,7 @@ A public catalog of templates for [Palette Studio](https://palette.team) — fol
 ## Structure
 
 Each template lives in its own folder. Two reserved subfolders are the
-only things Studio reads:
+only things Palette Desktop reads:
 
 - `_install/` — files placed on disk at the chosen destination. A file
   at `<template>/_install/X` lands at `<destination>/X`.
@@ -24,7 +25,7 @@ only things Studio reads:
   user's chosen location.
 
 Everything else at the template root (manifest, README, logo,
-screenshots, CHANGELOG, …) is template metadata — Studio ignores it.
+screenshots, CHANGELOG, …) is template metadata — Palette Desktop ignores it.
 The required pieces are:
 
 - `template.yaml` — manifest (name, slug, version, author, description, tags)
