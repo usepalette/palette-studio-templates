@@ -1,0 +1,12 @@
+# OS junk
+.DS_Store
+
+# Local env / secrets — never commit
+.env
+.env.*
+*.local
+
+# Editor cruft
+.vscode/
+.idea/
+*.swp

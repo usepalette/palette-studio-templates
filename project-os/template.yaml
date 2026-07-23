@@ -1,0 +1,22 @@
+name: Project OS
+slug: project-os
+type: folder
+version: 1.0.0
+author: Palette
+description: >-
+  A single project as a file system — one folder your whole team, your client, and every
+  AI agent work from. Context, meetings, decisions, research, design, deliverables, and how
+  the team works, all in plain markdown, plus a live status dashboard (overview.html)
+  generated from your files. Ships pre-filled with a sample project so it works on first
+  open; /onboard replaces it with yours.
+logo: logo.png
+tags: [project, project-management, client, agency, consulting, dashboard, workspace]
+license: MIT
+
+requires:
+  palette_desktop: ">=0.5"
+
+notes: |
+  After install, open overview.html for the live dashboard, then say "set me up"
+  (or run /onboard) to replace the sample project with your real one. Log decisions
+  with /new-decision, meetings with /new-meeting, and wrap up sessions with /finish-session.
