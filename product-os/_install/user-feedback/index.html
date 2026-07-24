@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product signals</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fdfaf8;
+      --panel: #ffffff;
+      --surface: #f4f4f5;
+      --text: #09090b;
+      --muted: #585861;
+      --dim: #7c7c85;
+      --border: rgba(0, 0, 0, 0.1);
+      --border-strong: rgba(0, 0, 0, 0.18);
+      --orange: #ff4000;
+      --orange-text: #c93400;
+      --orange-soft: #fff0e9;
+      --green-soft: #eaf7ef;
+      --green: #176b3a;
+      --yellow-soft: #fff7d7;
+      --yellow: #725b00;
+      --red-soft: #fdecec;
+      --red: #9f2525;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      font: 14px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, select { font: inherit; }
+    button, select { cursor: pointer; }
+
+    .shell {
+      width: min(1440px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 24px clamp(18px, 3vw, 42px) 18px;
+      background: color-mix(in srgb, var(--bg) 94%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .title-line {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow {
+      margin: 0 0 3px;
+      color: var(--orange-text);
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font: 700 clamp(25px, 3vw, 38px)/1.08 Merriweather, Georgia, serif;
+      letter-spacing: -0.025em;
+    }
+
+    .stats {
+      margin: 0 0 4px auto;
+      color: var(--muted);
+      text-align: right;
+      font-size: 13px;
+    }
+
+    .stats strong { color: var(--text); }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(220px, 1.8fr) repeat(4, minmax(120px, 0.7fr)) minmax(120px, 0.6fr);
+      gap: 9px;
+    }
+
+    .field {
+      width: 100%;
+      min-height: 42px;
+      padding: 9px 13px;
+      color: var(--text);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      outline: none;
+      box-shadow: var(--shadow);
+    }
+
+    .field:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px var(--orange-soft);
+    }
+
+    .workspace {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(340px, 0.9fr) minmax(450px, 1.5fr);
+    }
+
+    .list-pane {
+      min-width: 0;
+      border-right: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .list-meta {
+      position: sticky;
+      top: 139px;
+      z-index: 10;
+      padding: 12px clamp(18px, 3vw, 32px);
+      color: var(--muted);
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .signal-list { padding: 10px 12px 28px; }
+
+    .signal {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 10px minmax(0, 1fr);
+      gap: 12px;
+      padding: 14px 14px;
+      color: inherit;
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 16px;
+    }
+
+    .signal:hover { background: rgba(255, 255, 255, 0.75); }
+
+    .signal.active {
+      background: var(--panel);
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .kind-dot {
+      width: 9px;
+      height: 9px;
+      margin-top: 5px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 4px var(--orange-soft);
+    }
+
+    .kind-dot.interview { background: #4f46e5; box-shadow: 0 0 0 4px #eeedff; }
+    .kind-dot.feature-request { background: #166534; box-shadow: 0 0 0 4px #eaf7ef; }
+    .kind-dot.painpoint { background: #9f2525; box-shadow: 0 0 0 4px #fdecec; }
+
+    .signal-top {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .signal-title {
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      font-weight: 720;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .signal-date {
+      margin-left: auto;
+      flex: 0 0 auto;
+      color: var(--dim);
+      font-size: 11px;
+    }
+
+    .signal-summary {
+      display: -webkit-box;
+      margin: 5px 0 8px;
+      overflow: hidden;
+      color: var(--muted);
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .meta-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      color: var(--dim);
+      font-size: 11px;
+    }
+
+    .meta-line span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .kind-label {
+      flex: 0 0 auto;
+      padding: 2px 7px;
+      color: var(--text);
+      background: var(--surface);
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: 0.035em;
+      text-transform: uppercase;
+    }
+
+    .detail-pane {
+      min-width: 0;
+      padding: clamp(26px, 5vw, 68px);
+      background: var(--panel);
+    }
+
+    .detail {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .detail-kicker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+
+    .pill.signal-high, .pill.signal-blocking { color: var(--red); background: var(--red-soft); border-color: transparent; }
+    .pill.signal-medium, .pill.signal-recurring { color: var(--yellow); background: var(--yellow-soft); border-color: transparent; }
+    .pill.signal-low, .pill.signal-positive { color: var(--green); background: var(--green-soft); border-color: transparent; }
+    .pill.signal-negative { color: var(--red); background: var(--red-soft); border-color: transparent; }
+    .pill.signal-mixed { color: var(--yellow); background: var(--yellow-soft); border-color: transparent; }
+
+    .detail h2 {
+      margin: 0 0 14px;
+      font: 700 clamp(26px, 4vw, 42px)/1.12 Merriweather, Georgia, serif;
+      letter-spacing: -0.025em;
+    }
+
+    .byline {
+      margin: 0 0 34px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section h3 {
+      margin: 0 0 10px;
+      font-size: 12px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .section-content {
+      color: #25252a;
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    .section-content p { margin: 0 0 1em; }
+    .section-content p:last-child { margin-bottom: 0; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 24px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 28px;
+      padding: 10px 15px;
+      color: #fdfffa;
+      text-decoration: none;
+      background: #000;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+
+    .source-link:hover { transform: translateY(-1px); }
+
+    .source-link.secondary {
+      margin-left: 8px;
+      color: var(--text);
+      background: var(--panel);
+      border: 1px solid var(--border-strong);
+    }
+
+    .empty {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .empty-card {
+      width: min(440px, 100%);
+      padding: 34px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .empty-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      color: var(--orange-text);
+      background: var(--orange-soft);
+      border-radius: 16px;
+      font-size: 22px;
+    }
+
+    .empty h2 {
+      margin: 0 0 9px;
+      font: 700 23px/1.2 Merriweather, Georgia, serif;
+    }
+
+    .empty p { margin: 0; color: var(--muted); }
+    .empty code { color: var(--text); }
+
+    @media (max-width: 980px) {
+      .controls { grid-template-columns: 1fr 1fr 1fr; }
+      .controls .search { grid-column: 1 / -1; }
+      .workspace { grid-template-columns: minmax(300px, 0.8fr) minmax(390px, 1.2fr); }
+      .list-meta { top: 190px; }
+    }
+
+    @media (max-width: 720px) {
+      .topbar { position: static; }
+      .title-line { align-items: flex-start; }
+      .stats { margin-top: 3px; }
+      .controls { grid-template-columns: 1fr 1fr; }
+      .workspace { display: block; }
+      .list-pane { border-right: 0; }
+      .list-meta { position: static; }
+      .detail-pane { border-top: 1px solid var(--border); }
+      .detail-pane.has-selection { min-height: 100vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="title-line">
+        <div>
+          <p class="eyebrow">Product OS</p>
+          <h1>Product signals</h1>
+        </div>
+        <p class="stats" id="stats">Loading…</p>
+      </div>
+      <div class="controls">
+        <input class="field search" id="search" type="search" aria-label="Search product signals" placeholder="Search signal, company, person, or tag…">
+        <select class="field" id="kind-filter" aria-label="Filter by signal type">
+          <option value="">All types</option>
+        </select>
+        <select class="field" id="company-filter" aria-label="Filter by company">
+          <option value="">All companies</option>
+        </select>
+        <select class="field" id="tag-filter" aria-label="Filter by tag">
+          <option value="">All tags</option>
+        </select>
+        <select class="field" id="signal-filter" aria-label="Filter by signal strength">
+          <option value="">All signals</option>
+        </select>
+        <select class="field" id="sort" aria-label="Sort signals">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="company">Company</option>
+          <option value="evidence">Evidence</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="list-pane" aria-label="Signals">
+        <div class="list-meta" id="list-meta"></div>
+        <div class="signal-list" id="signal-list"></div>
+      </section>
+      <section class="detail-pane" id="detail-pane" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <!-- FEEDBACK_DATA_START -->
+  <script id="feedback-data" type="application/json">
+  {
+    "updated": "",
+    "items": []
+  }
+  </script>
+  <!-- FEEDBACK_DATA_END -->
+
+  <script>
+    const dataNode = document.getElementById("feedback-data");
+    const data = JSON.parse(dataNode.textContent);
+    const allItems = Array.isArray(data.items) ? data.items : [];
+
+    const ui = {
+      search: document.getElementById("search"),
+      kind: document.getElementById("kind-filter"),
+      company: document.getElementById("company-filter"),
+      tag: document.getElementById("tag-filter"),
+      signal: document.getElementById("signal-filter"),
+      sort: document.getElementById("sort"),
+      stats: document.getElementById("stats"),
+      meta: document.getElementById("list-meta"),
+      list: document.getElementById("signal-list"),
+      detail: document.getElementById("detail-pane")
+    };
+
+    let selectedFile = allItems[0]?.file || null;
+
+    const esc = (value = "") => String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+    const list = (value) => Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+    const label = (value = "") => value.replaceAll("-", " ");
+
+    function safeLocalSource(value = "") {
+      return /^(feedback|user-interviews|feature-requests|painpoints)\/[a-z0-9][a-z0-9._-]*\.md$/.test(value)
+        ? value
+        : "";
+    }
+
+    function safeHttpSource(value = "") {
+      try {
+        const url = new URL(value);
+        return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+      } catch {
+        return "";
+      }
+    }
+
+    function unique(values) {
+      return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    }
+
+    function fillSelect(select, values, formatter = (value) => value) {
+      for (const value of values) {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = formatter(value);
+        select.appendChild(option);
+      }
+    }
+
+    fillSelect(ui.kind, unique(allItems.map((item) => item.kind)), label);
+    fillSelect(ui.company, unique(allItems.flatMap((item) => list(item.companies))));
+    fillSelect(ui.tag, unique(allItems.flatMap((item) => list(item.tags))));
+
+    const signalFields = [
+      ["sentiment", "Sentiment"],
+      ["severity", "Severity"],
+      ["frequency", "Frequency"],
+      ["priority_signal", "Priority signal"]
+    ];
+
+    const signalOptions = signalFields.flatMap(([field, fieldLabel]) =>
+      unique(allItems.map((item) => item[field])).map((value) => ({
+        value: `${field}:${value}`,
+        label: `${fieldLabel}: ${label(value)}`
+      }))
+    );
+
+    for (const optionData of signalOptions) {
+      const option = document.createElement("option");
+      option.value = optionData.value;
+      option.textContent = optionData.label;
+      ui.signal.appendChild(option);
+    }
+
+    function searchText(item) {
+      return [
+        item.title, item.summary, item.details, item.kind,
+        ...list(item.people), ...list(item.companies), ...list(item.tags)
+      ].join(" ").toLowerCase();
+    }
+
+    function filteredItems() {
+      const query = ui.search.value.trim().toLowerCase();
+      const kind = ui.kind.value;
+      const company = ui.company.value;
+      const tag = ui.tag.value;
+      const signal = ui.signal.value;
+      const [signalField, signalValue] = signal ? signal.split(":") : ["", ""];
+
+      const filtered = allItems.filter((item) => {
+        if (query && !searchText(item).includes(query)) return false;
+        if (kind && item.kind !== kind) return false;
+        if (company && !list(item.companies).includes(company)) return false;
+        if (tag && !list(item.tags).includes(tag)) return false;
+        if (signalField && item[signalField] !== signalValue) return false;
+        return true;
+      });
+
+      const sort = ui.sort.value;
+      filtered.sort((a, b) => {
+        if (sort === "oldest") return String(a.date).localeCompare(String(b.date));
+        if (sort === "company") {
+          return String(list(a.companies)[0] || "").localeCompare(String(list(b.companies)[0] || ""))
+            || String(b.date).localeCompare(String(a.date));
+        }
+        if (sort === "evidence") {
+          return Number(b.source_count || 1) - Number(a.source_count || 1)
+            || String(b.date).localeCompare(String(a.date));
+        }
+        return String(b.date).localeCompare(String(a.date));
+      });
+
+      return filtered;
+    }
+
+    function textHtml(value = "") {
+      return esc(value)
+        .split(/\n{2,}/)
+        .map((paragraph) => `<p>${paragraph.replaceAll("\n", "<br>")}</p>`)
+        .join("");
+    }
+
+    function renderList(items) {
+      ui.meta.textContent = `${items.length} of ${allItems.length} signals`;
+      ui.list.innerHTML = "";
+
+      for (const item of items) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `signal${item.file === selectedFile ? " active" : ""}`;
+        button.dataset.file = item.file;
+        button.innerHTML = `
+          <span class="kind-dot ${esc(item.kind)}"></span>
+          <span>
+            <span class="signal-top">
+              <span class="signal-title">${esc(item.title || "Untitled signal")}</span>
+              <span class="signal-date">${esc(item.date || "")}</span>
+            </span>
+            <span class="signal-summary">${esc(item.summary || "No summary")}</span>
+            <span class="meta-line">
+              <span class="kind-label">${esc(label(item.kind || "signal"))}</span>
+              <span>${esc(list(item.companies).join(", ") || list(item.people).join(", ") || "Unattributed")}</span>
+              ${item.source_count > 1 ? `<span>· ${Number(item.source_count)} sources</span>` : ""}
+            </span>
+          </span>`;
+        button.addEventListener("click", () => {
+          selectedFile = item.file;
+          render();
+          if (window.innerWidth <= 720) ui.detail.scrollIntoView({ behavior: "smooth" });
+        });
+        ui.list.appendChild(button);
+      }
+    }
+
+    function detailEmpty(filteredOut = false) {
+      ui.detail.className = "detail-pane";
+      ui.detail.innerHTML = `
+        <div class="empty">
+          <div class="empty-card">
+            <div class="empty-icon">↗</div>
+            <h2>${filteredOut ? "No matching signal" : "Capture the first signal"}</h2>
+            <p>${filteredOut
+              ? "Adjust the filters or search."
+              : "Run <code>/feedback</code>, then <code>/feedback-sync</code>. The evidence will appear here."}
+            </p>
+          </div>
+        </div>`;
+    }
+
+    function renderDetail(item) {
+      if (!item) return detailEmpty(allItems.length > 0);
+
+      const localSource = safeLocalSource(item.file);
+      const originalSource = safeHttpSource(item.source_url);
+      const signals = [
+        item.sentiment && { value: item.sentiment, text: `Sentiment: ${item.sentiment}` },
+        item.priority_signal && { value: item.priority_signal, text: `Priority signal: ${item.priority_signal}` },
+        item.severity && { value: item.severity, text: `Severity: ${item.severity}` },
+        item.frequency && { value: item.frequency, text: `Frequency: ${item.frequency}` }
+      ].filter(Boolean);
+
+      ui.detail.className = "detail-pane has-selection";
+      ui.detail.innerHTML = `
+        <article class="detail">
+          <div class="detail-kicker">
+            <span class="pill">${esc(label(item.kind || "signal"))}</span>
+            <span>${esc(item.date || "")}</span>
+            ${item.source_count ? `<span>· ${Number(item.source_count)} source${Number(item.source_count) === 1 ? "" : "s"}</span>` : ""}
+          </div>
+          <h2>${esc(item.title || "Untitled signal")}</h2>
+          <p class="byline">
+            ${esc(list(item.people).join(", ") || "Unattributed")}
+            ${list(item.companies).length ? ` · ${esc(list(item.companies).join(", "))}` : ""}
+          </p>
+          ${signals.length ? `
+            <div class="detail-kicker">
+              ${signals.map((signal) => `<span class="pill signal-${esc(signal.value)}">${esc(signal.text)}</span>`).join("")}
+            </div>` : ""}
+          <section class="section">
+            <h3>Signal</h3>
+            <div class="section-content">${textHtml(item.summary || "No summary.")}</div>
+          </section>
+          ${item.details ? `
+            <section class="section">
+              <h3>Context and evidence</h3>
+              <div class="section-content">${textHtml(item.details)}</div>
+            </section>` : ""}
+          ${list(item.tags).length ? `
+            <div class="tags">${list(item.tags).map((tag) => `<span class="tag">${esc(tag)}</span>`).join("")}</div>` : ""}
+          ${localSource ? `<a class="source-link" href="${encodeURI(localSource)}">Open source markdown →</a>` : ""}
+          ${originalSource ? `<a class="source-link secondary" href="${esc(originalSource)}" target="_blank" rel="noreferrer">Open original source ↗</a>` : ""}
+        </article>`;
+    }
+
+    function render() {
+      const items = filteredItems();
+      if (!items.some((item) => item.file === selectedFile)) selectedFile = items[0]?.file || null;
+
+      const companies = unique(allItems.flatMap((item) => list(item.companies))).length;
+      const tags = unique(allItems.flatMap((item) => list(item.tags))).length;
+      const updated = data.updated ? ` · updated ${esc(data.updated)}` : "";
+      ui.stats.innerHTML = `<strong>${allItems.length}</strong> signals · <strong>${companies}</strong> companies · <strong>${tags}</strong> tags${updated}`;
+
+      renderList(items);
+      renderDetail(items.find((item) => item.file === selectedFile));
+    }
+
+    [ui.search, ui.kind, ui.company, ui.tag, ui.signal, ui.sort].forEach((control) => {
+      control.addEventListener(control === ui.search ? "input" : "change", render);
+    });
+
+    render();
+  </script>
+</body>
+</html>

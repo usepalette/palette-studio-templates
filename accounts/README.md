@@ -1,47 +1,39 @@
 # Accounts
 
-Working memory for the companies you're actively engaged with — the stuff
-that doesn't fit in a CRM field. What you actually think about an account,
-your strategy, meeting takeaways, what they care about, internal dynamics.
-Plain markdown, version-controlled, and driven by a single skill.
+Working memory for the companies you're actively engaged with. Keep the
+context that does not fit neatly into a CRM field, including your strategy,
+meeting takeaways, customer priorities, internal dynamics, and next steps.
 
 ## What you get
 
-- **`/account` skill** — the one entry point. Modes for creating an account,
-  logging a meeting, prepping for a call, updating a health read, and listing
-  what's live. Invoke it explicitly (`/account new "Acme"`) or just ask
-  ("log my call with Acme", "prep me for the Globex check-in").
-- **`accounts/<company>/`** — one folder per account. Starts with two files
-  (a `README.md` brief and a `health.md` read) from `_template/`, and grows
-  `meetings/` and `shareables/` as the relationship does.
-- **`accounts/accounts.md`** — the roster. One row per account: stage, owner,
+- **One folder per account.** Each company gets a brief, a health read,
+  meeting notes, and customer-facing material in one place.
+- **A shared account roster.** One row per account shows the stage, owner,
   last touch, next step. The file you skim to see where everything stands.
-- **`accounts/approach.md`** — your sales approach, personalized at install:
-  discovery questions, qualification signals, what you do and don't do. The
-  `prep` mode reads it so briefs sound like *you*, not a generic playbook.
+- **Your own sales approach.** Discovery questions, qualification signals,
+  and the way your team sells shape every call brief.
+- **A focused account workflow.** Ask an agent to create an account, log a
+  meeting, prepare a call, refresh relationship health, or list what is live.
 
-## How install works
+## How setup works
 
 When you install this workflow, an agent will:
 
-1. Confirm where the `accounts/` workspace should live (defaults to the
-   project root; offers to move it if you have an obvious home for it).
-2. Personalize `approach.md` — pulling your company, product, and ICP from
-   the Palette MCP or project files where it can, and asking you for the rest
-   in one short round.
+1. Confirm where the account workspace should live.
+2. Use available company, product, customer, and sales context to personalize
+   your approach.
+3. Ask one short round of questions for anything important that is missing.
 
-The skill and the folder templates are placed as-is. Studio creates a
-checkpoint right before install so you can revert.
+Palette Desktop creates a checkpoint right before installation, so you can
+restore the folder if you want to start over.
 
-## After install
+## Work with it naturally
 
-```bash
-/account new "Acme Corp"            # scaffold the account folder
-/account meeting acme-corp          # log a meeting, extract follow-ups
-/account prep acme-corp             # pre-call brief from the account + your approach
-/account health acme-corp           # refresh the health read
-/account list                       # roster, grouped by stage
-```
+- "Create an account for Acme."
+- "Log these notes from my Acme meeting and pull out the follow-ups."
+- "Prepare me for the Globex call."
+- "Refresh Acme's relationship health."
+- "Show me our active accounts and next steps."
 
-Each account's `README.md` is the one file you read to understand it — keep
-it scannable; detail belongs in the meeting files.
+Each account brief stays easy to scan. Detailed conversation history belongs
+in the dated meeting files.

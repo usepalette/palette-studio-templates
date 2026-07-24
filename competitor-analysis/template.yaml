@@ -1,9 +1,9 @@
 name: Competitor Analysis
 slug: competitor-analysis
 type: workflow
-version: 1.0.0
+version: 1.0.2
 author: Palette
-description: Set up structured competitor tracking — a landscape doc, per-competitor profiles, and an /add-competitor command.
+description: A structured competitor-analysis workflow with a market landscape, consistent profiles, sourced research, and a repeatable way to add competitors and keep the wider market view current.
 logo: logo.png
 tags: [gtm, marketing, research, competitors]
 license: MIT

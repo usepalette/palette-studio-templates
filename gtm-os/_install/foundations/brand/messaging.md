@@ -1,3 +1,12 @@
+---
+type: doc
+owner: [Owner]
+status: draft
+last_updated: YYYY-MM-DD
+last_updated_by: [Owner]
+edit_policy: team
+---
+
 # [Company Name] Messaging
 
 The practical reference. What to say, at what length, where. For the thinking behind it, see `positioning.md`.

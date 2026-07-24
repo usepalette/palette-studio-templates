@@ -1,3 +1,12 @@
+---
+type: doc
+owner: [Owner]
+status: draft
+last_updated: YYYY-MM-DD
+last_updated_by: [Owner]
+edit_policy: team
+---
+
 # [Company Name] Voice & Tone
 
 How [Company Name] communicates in public: website, sales, social, support, product marketing.

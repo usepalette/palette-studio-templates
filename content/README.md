@@ -1,48 +1,42 @@
 # Content
 
-A home for the writing you ship — blog posts, LinkedIn posts, newsletters,
-pitches, copy. Draft in markdown, refine against how your team thinks about
-content, check it against your brand voice, plan where it goes, and keep a
-running log of what you've published. Driven by a single skill.
+A home for the writing you ship, including blog posts, LinkedIn posts,
+newsletters, pitches, and website copy. Draft in Markdown, refine the work
+against your team's playbook and voice, plan distribution, and keep a clear
+record of what you publish.
 
 ## What you get
 
-- **`/content` skill** — the one entry point. Modes for starting a draft,
-  refining it, checking it against your voice, planning distribution, and
-  logging what you ship. Invoke it explicitly (`/content new "..."`) or just
-  ask ("help me write a post about X", "does this sound like us?").
-- **`content/drafts/`** — pieces in progress as markdown, each with a target
-  channel, the one takeaway, and the draft itself.
-- **`content/content.md`** — a log of what you've shipped and what's in flight.
-- **`content/voice.md`** — your brand voice, personalized at install: tone,
-  principles, words to avoid, and a self-check the `voice-check` mode runs
-  against any draft. The piece that makes the workflow sound like *you*.
-- **`content/playbook.md`** — how your team thinks about content: philosophy,
-  the before/while/after of writing, content types, and distribution.
+- **Channel-aware drafts.** Each draft keeps the target channel, the main
+  takeaway, and the working copy together.
+- **Your brand voice.** Tone, language principles, words to avoid, and a
+  practical self-check keep the writing recognizably yours.
+- **Your content playbook.** The workflow follows how your team thinks about
+  writing and distribution.
+- **A clear content log.** See what is in progress, scheduled, or published.
+- **One focused workflow.** Ask an agent to start, refine, check, distribute,
+  or log a piece of content.
 
-## How install works
+## How setup works
 
 When you install this workflow, an agent will:
 
-1. Confirm where the `content/` workspace should live (defaults to the
-   project root; offers to move it if you have an obvious home for it).
-2. Personalize `voice.md` — pulling your tone, audience, and brand language
-   from the Palette MCP or project files where it can, and asking you for the
-   rest in one short round.
+1. Confirm where the content workspace should live.
+2. Use available brand, audience, and writing context to personalize the
+   voice guide.
+3. Ask one short round of questions for anything important that is missing.
 
-The skill and the playbook are placed as-is. Studio creates a checkpoint
-right before install so you can revert.
+Palette Desktop creates a checkpoint right before installation, so you can
+restore the folder if you want to start over.
 
-## After install
+## Work with it naturally
 
-```bash
-/content new "Why we rebuilt our onboarding"   # start a draft for a channel
-/content refine why-we-rebuilt-onboarding       # tighten against the playbook
-/content voice-check why-we-rebuilt-onboarding  # check it against your voice
-/content distribute why-we-rebuilt-onboarding   # plan primary + amplification
-/content log                                     # log a piece you shipped
-/content list                                    # see everything
-```
+- "Help me write a LinkedIn post about why we rebuilt onboarding."
+- "Tighten this draft using our content playbook."
+- "Does this sound like us?"
+- "Plan how we should distribute this piece."
+- "Log the article we published today."
 
-`voice.md` and `playbook.md` are yours to edit — the skill reads them every
-time, so the more they reflect how you actually write, the better the output.
+The voice guide and playbook are yours to edit. The workflow reads them each
+time, so the better they reflect how you actually write, the better the work
+will fit your team.

@@ -1,15 +1,14 @@
 name: Accounts
 slug: accounts
 type: workflow
-version: 1.0.0
+version: 1.0.2
 author: Palette
-description: A lightweight account system for sales and CS — track the companies you're engaged with in plain files, log meetings in a consistent format, keep a running health read, and prep for calls grounded in your own sales approach. The stuff that doesn't fit a CRM field. Driven by an /account skill.
+description: A lightweight account workflow for sales and customer success. Keep account briefs, meeting notes, health reads, next steps, and call preparation together in plain files shaped by your own sales approach.
 logo: logo.png
 tags: [accounts, sales, crm, customer-success, relationships, workspace]
 license: MIT
 
 notes: |
-  After install, run /account new "<company>" to create your first account,
-  then /account meeting <slug> to log a conversation and /account prep <slug>
-  to build a pre-call brief. Your sales approach (discovery questions,
-  qualification signals) is personalized into approach.md at install.
+  After install, ask your agent to add an account, log a meeting, prepare a
+  call, refresh relationship health, or list what is live. Your discovery
+  questions and qualification signals are personalized into approach.md.

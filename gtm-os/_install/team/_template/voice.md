@@ -1,3 +1,12 @@
+---
+type: doc
+owner: [Owner]
+status: draft
+last_updated: YYYY-MM-DD
+last_updated_by: [Owner]
+edit_policy: team
+---
+
 # [Name] — Voice
 
 How [Name] writes and communicates. Read this before writing anything as or for them.

@@ -1,15 +1,14 @@
 name: Content
 slug: content
 type: workflow
-version: 1.0.0
+version: 1.0.2
 author: Palette
-description: A content system for writers and marketers — start drafts for a target channel, refine them against your own playbook, check copy against your brand voice, plan distribution, and keep a log of what you've shipped. Driven by a /content skill.
+description: A brand-aware content workflow for writers and marketers. Start channel-specific drafts, refine them against your playbook, check them against your voice, plan distribution, and keep a record of what you ship.
 logo: logo.png
 tags: [content, writing, marketing, blog, social, voice, productivity]
 license: MIT
 
 notes: |
-  After install, run /content new "<topic>" to start a draft, /content refine
-  <slug> to tighten it, and /content voice-check <slug> to check it against
-  your brand voice. Your tone, principles, and voice self-check are
-  personalized into voice.md at install.
+  After install, ask your agent to start a draft, refine it, check it against
+  your voice, plan distribution, or log what you shipped. Your tone,
+  principles, and voice self-check are personalized into voice.md.
