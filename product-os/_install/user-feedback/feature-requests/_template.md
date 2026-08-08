@@ -1,12 +1,12 @@
 ---
 type: feedback
 date: YYYY-MM-DD
-requested_by: [Full name]
-company: [Company]
+requested_by: "[Full name]"
+company: "[Company]"
 source_files:
   - ../feedback/YYYY-MM-DD_company_person_topic.md
 tags: []
-priority_signal: [low | medium | high]
+priority_signal: "[low | medium | high]"
 status: active
 ---
 

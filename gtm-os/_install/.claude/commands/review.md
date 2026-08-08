@@ -1,4 +1,5 @@
 ---
+type: command
 description: Review your work against brand, hygiene, and completeness before sharing
 ---
 

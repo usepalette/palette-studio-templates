@@ -1,9 +1,9 @@
 ---
 type: index
-owner: [Workspace steward]
+owner: "[Workspace steward]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Setup author]
+last_updated_by: "[Setup author]"
 edit_policy: team
 ---
 

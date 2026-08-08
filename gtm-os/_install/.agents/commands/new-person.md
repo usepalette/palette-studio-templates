@@ -1,4 +1,5 @@
 ---
+type: command
 description: Scaffold a teammate's team/<name>/ folder (profile + voice), stamped and ready
 argument-hint: "<name> [role]"
 ---

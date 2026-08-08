@@ -1,10 +1,10 @@
 ---
 type: strategy
-title: [Short thesis title]
-owner: [Responsible owner]
-status: [draft | active | parked | archived]
+title: "[Short thesis title]"
+owner: "[Responsible owner]"
+status: "[draft | active | parked | archived]"
 last_updated: YYYY-MM-DD
-last_updated_by: [Current human]
+last_updated_by: "[Current human]"
 edit_policy: team
 contributors: []
 sources: []

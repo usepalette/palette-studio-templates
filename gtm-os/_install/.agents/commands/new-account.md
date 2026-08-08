@@ -1,4 +1,5 @@
 ---
+type: command
 description: Scaffold an accounts/<name>/ folder from the template and register it on the status board
 argument-hint: "<company name or domain>"
 ---
@@ -19,7 +20,7 @@ Scaffold `accounts/<name>/` from `accounts/_template/` and add it to the status 
 ## Process
 
 1. **Check it doesn't exist.** If `accounts/<slug>/` exists, stop and offer to open it or update it.
-2. **Enrich from a connector if one is set up (optional).** If a live-context connector or your CRM/product-analytics tools are available, look the company up and pull what's cheap: description, domain, stage, key people, recent activity. If nothing's connected, skip — the template placeholders are fine to fill by hand later.
+2. **Enrich from a connector if one is set up (optional).** If a live-context connector or your CRM/product-analytics tools are available, confirm you're querying the right tenant/workspace and that the user is entitled to the data before looking anything up. Pull what's cheap: description, domain, stage, key people, recent activity. Then **show the facts you propose to persist and write only the ones the user confirms** — an enrichment result is a suggestion, not a source of truth. If nothing's connected, skip — the template placeholders are fine to fill by hand later.
 3. **Copy the template.** Create `accounts/<slug>/` from `accounts/_template/`:
    - `README.md` (the brief) — stamp frontmatter (`type: account`, `owner`, `status: active`, `last_updated` = today, `last_updated_by`, `edit_policy: team`); fill the identity table and anything you learned; leave the rest as the template's bracketed prompts.
    - `health.md`, `requests.md`, `meetings/`, `shareables/` — keep the structure; fill only what you know.

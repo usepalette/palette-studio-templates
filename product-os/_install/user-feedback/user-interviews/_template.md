@@ -2,12 +2,12 @@
 type: feedback
 date: YYYY-MM-DD
 source: interview
-source_url: [Recording, transcript, calendar note, or unavailable]
-capture_mode: [verbatim | paraphrase | summary]
-person: [Full name]
-company: [Company]
+source_url: "[Recording, transcript, calendar note, or unavailable]"
+capture_mode: "[verbatim | paraphrase | summary]"
+person: "[Full name]"
+company: "[Company]"
 tags: []
-sentiment: [positive | neutral | negative | mixed]
+sentiment: "[positive | neutral | negative | mixed]"
 ---
 
 # [Interview topic]

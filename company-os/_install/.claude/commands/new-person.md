@@ -1,4 +1,5 @@
 ---
+type: command
 description: Scaffold a teammate's people/<name>/ folder from the template, stamped and ready
 argument-hint: "<name> [email] [role]"
 ---

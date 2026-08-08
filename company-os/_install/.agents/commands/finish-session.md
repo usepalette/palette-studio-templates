@@ -1,4 +1,5 @@
 ---
+type: command
 description: Wrap up the current session — recap, follow-ups, memory line
 argument-hint: "[short slug for the recap filename]"
 ---
@@ -33,6 +34,15 @@ Capture what the session produced in the space's two memory files (root `AGENTS.
 For a meaningful session, also write a fuller recap as `YYYY-MM-DD-<slug>.md` in a sensible spot in the space you worked in (a `log/sessions/` folder if the space keeps one, otherwise alongside the work). If `$ARGUMENTS` is set, use it as the slug; otherwise pick a short kebab-case slug. Otherwise the `log.md` line is enough — don't force a recap file.
 
 ```markdown
+---
+type: meeting
+owner: "[Owner]"
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: team
+---
+
 # <Title> — YYYY-MM-DD
 
 ## Summary

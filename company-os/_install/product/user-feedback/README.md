@@ -1,9 +1,9 @@
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 ---
 
@@ -33,12 +33,13 @@ Every file in `feedback/` (and similar leaf files elsewhere in this folder) open
 
 ```
 ---
+type: feedback
 date: YYYY-MM-DD
-source: [chat | interview | email | support | call]
-person: [Name]
-company: [Company]
+source: "[chat | interview | email | support | call]"
+person: "[Name]"
+company: "[Company]"
 tags: [tag1, tag2]
-sentiment: [positive | neutral | negative | mixed]
+sentiment: "[positive | neutral | negative | mixed]"
 ---
 ```
 

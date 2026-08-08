@@ -2,8 +2,8 @@
 type: meeting
 date: YYYY-MM-DD
 participants: []
-tracker: [Link or not used]
-last_updated_by: [Current human]
+tracker: "[Link or not used]"
+last_updated_by: "[Current human]"
 ---
 
 # Roadmap sync - YYYY-MM-DD

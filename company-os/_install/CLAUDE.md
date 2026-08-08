@@ -1,3 +1,7 @@
+---
+type: doc
+---
+
 # Claude adapter
 
 **Before doing anything else, read the *entire* `AGENTS.md` in this folder and follow every rule in it — start to finish.** Begin with its "First-run detection" and "Start here — before any task" sections and actually do those steps.

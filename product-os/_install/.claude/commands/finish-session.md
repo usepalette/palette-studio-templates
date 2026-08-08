@@ -1,4 +1,5 @@
 ---
+type: command
 description: Wrap up meaningful product work with decisions, follow-ups, and durable learning
 argument-hint: "[short recap slug]"
 ---

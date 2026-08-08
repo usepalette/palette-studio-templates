@@ -1,9 +1,9 @@
 ---
 type: doc
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 ---
 
@@ -48,7 +48,7 @@ edit_policy: team
 ## Research inputs
 
 ### Customer context
-<!-- Which accounts asked for this or something related? Source: ../../../accounts/*/requests.md -->
+<!-- Which accounts asked for this or something related? Source: ../../accounts/*/requests.md -->
 
 | Account | Related request | Champion | Why they care |
 |---|---|---|---|

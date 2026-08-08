@@ -1,13 +1,13 @@
 ---
 type: input
-person: [Full name]
-role: [Role]
-owner: [Responsible owner]
+person: "[Full name]"
+role: "[Role]"
+owner: "[Responsible owner]"
 status: active
 last_updated: YYYY-MM-DD
-last_updated_by: [Current human]
+last_updated_by: "[Current human]"
 edit_policy: team
-source: [Conversation or link]
+source: "[Conversation or link]"
 ---
 
 # [Full name] - product input

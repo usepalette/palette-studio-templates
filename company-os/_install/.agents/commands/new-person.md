@@ -1,4 +1,5 @@
 ---
+type: command
 description: Scaffold a teammate's people/<name>/ folder from the template, stamped and ready
 argument-hint: "<name> [email] [role]"
 ---
@@ -16,7 +17,7 @@ Scaffold a `people/<name>/` folder from `people/_template/` so a teammate's prof
 Parse from the argument; ask for what's missing. Don't fabricate — propose → confirm.
 
 1. **Name** (required) — slug it kebab-case (`Alex Rivera` → `alex-rivera`, or just `alex` if unambiguous).
-2. **Email** (required for identity matching) — how agents recognize this person at session start. Default to your company pattern (`name@<company-domain>`) and confirm.
+2. **Email** (required for identity matching) — how agents recognize this person at session start. Ask for the exact address; never infer one from a company pattern (`name@<company-domain>`). A guessed address silently routes future sessions to the wrong owner-only profile. If it genuinely isn't known yet, leave the field unresolved and note that identity matching won't work until it's filled in.
 3. **Role** (optional) — their title.
 4. Optional: `slack`, `github`, `linkedin`.
 

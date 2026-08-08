@@ -1,4 +1,5 @@
 ---
+type: command
 description: Tidy the OS's lessons.md and log.md files and propose promotions — suggest-only
 argument-hint: "[scope path, e.g. gtm/ or people/<name>/ — omit for whole OS]"
 ---
@@ -20,7 +21,7 @@ Run Tier 1 always. Run Tier 2 and present its proposals; apply only what the hum
 For each `lessons.md` and `log.md` in scope:
 
 - **Dedupe / merge** near-duplicate lines into one.
-- **Absolute dates** — convert any relative dates ("yesterday", "last week") to `YYYY-MM-DD`.
+- **Absolute dates** — convert relative dates ("yesterday", "last week") to `YYYY-MM-DD` **only when a reliable timestamp exists** (the line's own date, a dated neighbour, the file's history). If you can't anchor it, leave the text as-is and flag the line for the human to date — never guess a `YYYY-MM-DD`.
 - **Right file?** — flag a *do-differently* rule sitting in `log.md`, or *what-happened* history sitting in `lessons.md`, and propose moving it.
 - **Right scope?** — flag a person-specific line in a space/root file (or vice-versa) and propose relocating it to the narrowest scope that benefits.
 - **Contradictions** — surface two lessons that conflict; don't pick a winner, ask.

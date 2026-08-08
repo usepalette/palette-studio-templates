@@ -1,4 +1,5 @@
 ---
+type: command
 description: Audit workspace structure for broken references, stale indexes, and misplaced files
 argument-hint: "[fix|report]"
 ---
@@ -174,6 +175,9 @@ This OS started from a template. Real content should have replaced the placehold
 
 ### File-role drift ({count})
 - `{space}` — missing README or furniture / thin AGENTS.md / no "what to do when" table
+
+### Template placeholders ({count})
+- `{file}` — {placeholder or field still un-filled} — {run `/onboard` | fill the field}
 ```
 
 If running in `fix` mode, show what was changed after each section.

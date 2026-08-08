@@ -1,12 +1,12 @@
 ---
 type: account
-company: [Company]
-owner: [Responsible owner]
+company: "[Company]"
+owner: "[Responsible owner]"
 status: active
-tier: [prospect | user | design-partner | churned | other]
-primary_contact: [Full name]
+tier: "[prospect | user | design-partner | churned | other]"
+primary_contact: "[Full name]"
 last_updated: YYYY-MM-DD
-last_updated_by: [Current human]
+last_updated_by: "[Current human]"
 edit_policy: team
 ---
 

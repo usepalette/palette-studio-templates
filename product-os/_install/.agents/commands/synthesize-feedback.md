@@ -1,4 +1,5 @@
 ---
+type: command
 description: Compare feedback sources and create or update evidence-backed painpoints and requests
 argument-hint: "[topic, company, tag, or file paths]"
 ---
@@ -43,6 +44,11 @@ Wait for confirmation before writing. Synthesis involves judgment.
 
 ## 4. Write confirmed changes
 
+- **Check audience access first.** Confirm who can read the destination folder before writing
+  customer material into it, and anonymize restricted names, quotes, and source links rather than
+  copying them across an audience boundary.
+- **Honor each target file's `edit_policy`.** Confirmation to write is not authorization to edit an
+  `owner-only` file — read the frontmatter and get the owner's approval for those.
 - Create or update painpoints and requests from their folder `_template.md` files.
 - Keep `source_files` complete and relative.
 - Preserve verbatim quotes.

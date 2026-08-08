@@ -1,4 +1,5 @@
 ---
+type: command
 description: Wrap up meaningful product work with decisions, follow-ups, and durable learning
 argument-hint: "[short recap slug]"
 ---
@@ -34,7 +35,12 @@ For a meaningful session, create `log/sessions/YYYY-MM-DD-short-slug.md`:
 ```markdown
 ---
 type: meeting
+owner: "[Responsible owner]"
+status: active
 date: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+last_updated_by: "[Current human]"
+edit_policy: team
 ---
 
 # [Title]

@@ -1,9 +1,9 @@
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 read_when: [You're prioritizing the roadmap, scoping a spec against an alternative, or briefing the team on a competitor's latest release]
 ---
@@ -26,8 +26,11 @@ Structured profiles of what competitors actually *ship* — features, gaps, road
 ```markdown
 ---
 type: competitor
+owner: "[Owner]"
 status: active
 last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: team
 ---
 
 # [Competitor name]

@@ -1,4 +1,5 @@
 ---
+type: command
 description: Add a product teammate using the team profile template
 argument-hint: "<name> [email] [role]"
 ---

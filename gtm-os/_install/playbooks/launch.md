@@ -1,9 +1,9 @@
 ---
 type: playbook
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 read_when:
   - You're launching a feature or product
@@ -65,7 +65,7 @@ Two phases, with a hard checkpoint between them.
 The messaging brief **is** the launch. Don't write any content until it's locked.
 
 1. **Understand what shipped.** Read the PRD / PR / feature description. What does it actually do? Don't write anything until you can explain it in one sentence.
-2. **Check customer context.** Who's been asking for this? Scan your accounts (e.g. `../../accounts/*/requests.md`) for champions who care and the language they used — it shapes how you frame it.
+2. **Check customer context.** Who's been asking for this? Scan your accounts (e.g. `../accounts/*/requests.md`) for champions who care and the language they used — it shapes how you frame it.
 3. **Check the landscape.** Look at `../foundations/market/competitors/` — do rivals have this, and how do they position it? This shapes your angle.
 4. **Draft the messaging brief** with the user (use `../templates/launch/messaging-brief.md`), and agree it before moving on. Fill in:
    - **One-liner** — the launch in a sentence.
@@ -101,7 +101,7 @@ Each template carries its own "how to write this" guidance — the playbook says
 **Tier 1 floor:** website changelog + community post (users hear about it where they already are), plus a product-update email for anything worth emailing.
 
 **Where content lives:**
-- **Tier 1 (changelog):** a dated release folder (e.g. `../content/changelog/YYYY-MM-DD-<slug>/` if you keep a content space).
+- **Tier 1 (changelog):** a dated release folder (e.g. `../work/content/changelog/YYYY-MM-DD-<slug>/`).
 - **Tier 2 / 3:** the launch folder — the messaging brief and every produced asset live together.
 
 ---

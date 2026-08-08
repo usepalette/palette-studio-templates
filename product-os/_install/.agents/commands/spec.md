@@ -1,4 +1,5 @@
 ---
+type: command
 description: Draft and save a tight product spec linked to its evidence
 argument-hint: "<problem or feature brief>"
 ---
@@ -34,7 +35,9 @@ Do not manufacture certainty. A useful spec can explicitly say evidence is thin.
 
 ## 3. Draft and save
 
-Create `specs/<what-ships>.md` from `specs/_template.md`.
+Create `specs/<what-ships>.md` from `specs/_template.md`. Derive `<what-ships>` as a lowercase,
+kebab-case **single path segment** — reject or rewrite anything containing `/`, `..`, or characters
+outside `a-z0-9-` so the spec cannot land outside `specs/`.
 
 Keep it concise:
 

@@ -1,4 +1,5 @@
 ---
+type: command
 description: Set up this GTM OS for your company — fills the template with real content
 ---
 

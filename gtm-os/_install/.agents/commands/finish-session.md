@@ -1,4 +1,5 @@
 ---
+type: command
 description: Wrap up the current session — recap, follow-ups, memory line
 argument-hint: "[short slug for the recap filename]"
 ---
@@ -72,3 +73,5 @@ If a live-context connector (e.g. Palette) is set up, capture a work signal to i
 - Who or what teams this is relevant to
 
 Skip purely mechanical details (file moves, workspace hygiene). Include anything carrying business or strategic context. If no connector is set up, skip this step.
+
+**Before sending, show the user exactly where it's going and what's in it** — the destination (connector, workspace, audience) and the full payload text — and send only on an explicit yes. This leaves the workspace, so a general "wrap up the session" is not consent to publish it.

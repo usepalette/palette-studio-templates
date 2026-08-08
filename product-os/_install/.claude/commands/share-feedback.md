@@ -1,4 +1,5 @@
 ---
+type: command
 description: Draft a sourced feedback recap and optionally send it after explicit approval
 argument-hint: "<company, topic, or tag>"
 ---

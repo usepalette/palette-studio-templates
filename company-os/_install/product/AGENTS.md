@@ -35,4 +35,4 @@ When in doubt which mode you're in: ask. A short clarification beats wrong-direc
 
 ## Workspace hygiene
 
-Company-wide hygiene rules — including the `lessons.md` / `log.md` convention — are in `../AGENTS.md`. Product's forward-looking learnings live in `product/lessons.md`; what happened lives in `product/log.md`. Run `/reflect` to keep them tidy and promote recurring lessons into this file.
+Company-wide hygiene rules — including the `lessons.md` / `log.md` convention — are in `../AGENTS.md`. Product's forward-looking learnings live in `lessons.md`; what happened lives in `log.md`. Run `/reflect` to keep them tidy and promote recurring lessons into this file.

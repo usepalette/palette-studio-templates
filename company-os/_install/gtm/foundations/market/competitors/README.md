@@ -1,9 +1,9 @@
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 read_when: [You're doing competitive work — a battle card, a comparison, positioning against an alternative]
 ---
@@ -15,7 +15,7 @@ Structured profiles of the companies we run into. The source of truth for compet
 ## How this works
 
 - **One file per competitor** — `<competitor-name>.md`, using the template below.
-- **Synthesized, not raw** — each file distills what we know into a consistent shape. Raw research lives in `../../work/research/` and is linked under "Sources".
+- **Synthesized, not raw** — each file distills what we know into a consistent shape. Raw research lives in `../../../work/research/` and is linked under "Sources".
 - **The template lives here, in this README.** Read it before writing a profile, so every profile has the same shape. Extend the template here and future profiles inherit it.
 - **Be honest.** "Where they win" must be real — we get sharper by naming their strengths, not ignoring them.
 - **Keep it current.** Update when you spot a positioning shift, a raise, or a GTM move.
@@ -25,8 +25,11 @@ Structured profiles of the companies we run into. The source of truth for compet
 ```markdown
 ---
 type: competitor
+owner: "[Owner]"
 status: active
 last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: team
 ---
 
 # [Competitor name]

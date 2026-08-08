@@ -1,3 +1,7 @@
+---
+type: doc
+---
+
 # Vibe / Mistral adapter
 
 Read and follow the *entire* `AGENTS.md` in the folder above this one (the workspace root), starting with its "First-run detection" and "Start here — before any task" sections.

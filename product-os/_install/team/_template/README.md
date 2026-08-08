@@ -1,11 +1,11 @@
 ---
 type: person
-owner: [Full name]
-email: [Email]
-role: [Role]
+owner: "[Full name]"
+email: "[Email]"
+role: "[Role]"
 status: active
 last_updated: YYYY-MM-DD
-last_updated_by: [Current human]
+last_updated_by: "[Current human]"
 edit_policy: owner-only
 ---
 

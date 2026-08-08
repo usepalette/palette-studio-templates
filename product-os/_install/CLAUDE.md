@@ -1,3 +1,7 @@
+---
+type: doc
+---
+
 # Claude adapter
 
 **Before doing anything else, read the entire `AGENTS.md` in this folder and follow it.** Start

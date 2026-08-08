@@ -1,4 +1,5 @@
 ---
+type: command
 description: Set up this OS for your company — fills the template with real content
 ---
 
@@ -49,7 +50,7 @@ Ask:
 - Any to drop? (a space that doesn't apply — e.g. no `engineering/` for a non-technical team)
 - Any others they want now? (note they can always add more later with `/create-space` — no need to front-load everything)
 
-For each dropped space: confirm the folder name before deleting, then delete `<space>/` and remove it from the root `README.md` (the `## Structure` tree + the `## Owners` table) and root `AGENTS.md` ("The spaces" table).
+For each dropped space: **list the exact paths you're about to remove** — the `<space>/` folder and every file under it, plus the root `README.md` rows (the `## Structure` tree + the `## Owners` table) and the root `AGENTS.md` "The spaces" row — and get an explicit yes immediately before deleting. Deletion is not reversible here, so never batch it behind an earlier, more general confirmation.
 
 For any new space requested now: use the `/create-space` flow rather than hand-rolling it, so it's registered correctly.
 

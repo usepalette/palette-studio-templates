@@ -1,14 +1,14 @@
 ---
 type: feedback
 date: YYYY-MM-DD
-source: [chat | interview | email | support | call | other]
-source_url: [Permalink, ticket, recording, email reference, or unavailable]
-capture_mode: [verbatim | paraphrase | summary]
-person: [Full name]
-company: [Company]
-channel: [Channel, if relevant]
+source: "[chat | interview | email | support | call | other]"
+source_url: "[Permalink, ticket, recording, email reference, or unavailable]"
+capture_mode: "[verbatim | paraphrase | summary]"
+person: "[Full name]"
+company: "[Company]"
+channel: "[Channel, if relevant]"
 tags: []
-sentiment: [positive | neutral | negative | mixed]
+sentiment: "[positive | neutral | negative | mixed]"
 ---
 
 # [Short topic]

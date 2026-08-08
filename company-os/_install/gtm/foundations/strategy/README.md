@@ -1,9 +1,9 @@
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 ---
 
@@ -20,4 +20,4 @@ Strategy docs that outlive a single campaign: which channels we're betting on an
 | `gtm-strategy.md` | The motion, channels, sequencing, and bets — how we win at the GTM level |
 | `vision.md` | The north star — where we're taking the market, longer horizon |
 
-Not here: campaign execution (`../work/campaigns/`), one-off research (`../work/research/`), brand voice (`../brand/`).
+Not here: campaign execution (`../../work/campaigns/`), one-off research (`../../work/research/`), brand voice (`../brand/`).

@@ -1,4 +1,5 @@
 ---
+type: command
 description: Rebuild the feedback dashboard data from markdown without changing the viewer code
 ---
 

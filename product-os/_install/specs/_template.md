@@ -1,12 +1,12 @@
 ---
 type: spec
-owner: [Responsible owner]
+owner: "[Responsible owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Current human]
+last_updated_by: "[Current human]"
 edit_policy: team
 source_files: []
-tracker: [Link when created or not used]
+tracker: "[Link when created or not used]"
 ---
 
 # [Spec title]

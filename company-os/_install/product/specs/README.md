@@ -1,9 +1,9 @@
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 read_when: [You're about to draft a spec and want it to drop straight into the tracker]
 ---

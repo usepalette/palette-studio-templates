@@ -14,7 +14,7 @@ are in place, waiting to be filled with the user's real company. There is no sam
 
 2. Run the `/onboard` command. It's a conversational setup that captures company basics, product,
    market, brand voice, and the team — then fills the foundation files and swaps the README landing
-   page for the company's living index. The full flow is defined in `.claude/commands/onboard.md`
+   page for the company's living index. The full flow is defined in `.agents/commands/onboard.md`
    (already placed) — follow it as written. Prefer pulling context from the Palette MCP or docs the
    user drops in `_inbox/` before asking questions; keep questions to one short round; never
    fabricate — propose, then confirm.

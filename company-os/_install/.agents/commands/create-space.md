@@ -1,4 +1,5 @@
 ---
+type: command
 description: Scaffold a new top-level space folder to the OS conventions and register it
 argument-hint: "<space-name>"
 ---

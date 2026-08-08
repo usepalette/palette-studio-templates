@@ -1,3 +1,7 @@
+---
+type: doc
+---
+
 # Vibe / Mistral adapter
 
 Read and follow the entire `AGENTS.md` in the folder above this one, starting with "First-run

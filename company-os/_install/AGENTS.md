@@ -1,3 +1,12 @@
+---
+type: doc
+owner: "[Owner]"
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
+---
+
 # [Company] OS
 
 Your company's operating system: a Google Drive-backed, AI-readable workspace where the whole company's knowledge, active work, and processes live — across every space.
@@ -9,7 +18,7 @@ You work with the team here as a teammate who understands the business context, 
 At the start of **every** conversation, check whether this OS has been set up — this is the closest thing to an automatic "let's get you set up," so treat it as a gate, not an afterthought. The user's first message (even "hi") is your cue to check and, if needed, lead.
 
 1. **Look for `SETUP.md`.** If it exists with unchecked boxes (or its Status isn't `COMPLETE`), setup is unfinished — this is the deterministic signal.
-2. If `SETUP.md` is gone, glance at the root `README.md` and one space README (e.g. `accounts/README.md`): leftover `[bracket placeholders]` (`[Company]`, `[Owner]`, …) mean it's still template-shaped.
+2. **Always glance at the root `README.md` and one space README** (e.g. `accounts/README.md`), whether or not `SETUP.md` is still there: leftover `[bracket placeholders]` (`[Company]`, `[Owner]`, …) mean it's still template-shaped. A `SETUP.md` marked `COMPLETE` ahead of the real work doesn't override this — treat setup as done only when **both** signals agree.
 
 - **Not set up:** Don't wait to be asked. Greet the user briefly and start `/onboard`. **Make it low-effort** — offer to prefill from a live connector, from docs they drop in `_inbox/`, or from context exported out of another AI/tool, and only fall back to asking questions. Load the **`prefill-context`** skill for the how.
 - **Partially set up:** tell the user what `SETUP.md` still shows open and offer to continue from the cheapest source.

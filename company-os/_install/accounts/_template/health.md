@@ -1,10 +1,10 @@
 ---
 type: doc
-maintained_by: [human or machine]
-owner: [Owner]
+maintained_by: "[human or machine]"
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 ---
 

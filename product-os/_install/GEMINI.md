@@ -1,3 +1,7 @@
+---
+type: doc
+---
+
 # Gemini adapter
 
 Read and follow the entire `AGENTS.md` in this folder, starting with "First-run detection" and

@@ -1,4 +1,5 @@
 ---
+type: command
 description: Wrap up the current session — recap, follow-ups, memory line
 argument-hint: "[short slug for the recap filename]"
 ---

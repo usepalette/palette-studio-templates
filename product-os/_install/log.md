@@ -1,9 +1,9 @@
 ---
 type: log
-owner: [Workspace steward]
+owner: "[Workspace steward]"
 status: active
 last_updated: YYYY-MM-DD
-last_updated_by: [Setup author]
+last_updated_by: "[Setup author]"
 edit_policy: team
 ---
 

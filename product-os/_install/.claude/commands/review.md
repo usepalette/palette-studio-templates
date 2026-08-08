@@ -1,4 +1,5 @@
 ---
+type: command
 description: Review product work for evidence, traceability, hygiene, and completeness
 ---
 

@@ -22,7 +22,7 @@ If the user has dropped files in `_inbox/` (or points you at any folder/files):
 - Read everything. Common inputs: pitch deck, one-pager, an existing `CLAUDE.md`/`AGENTS.md`, Notion/Confluence/Docs exports, org chart, team list, CRM/pipeline export, meeting notes, transcripts.
 - Extract: company one-liner, stage, ICP/market, brand voice cues, product overview, team names+roles, current customers, active projects.
 - File each fact into the right space using the scaffolding commands (`/new-person`, `/new-account`, `/create-space`), not by hand.
-- When done, tell the user what you filed and **clear `_inbox/`** (move originals into the space they informed, or delete if fully absorbed).
+- When done, tell the user what you filed, then **propose** what to do with `_inbox/`: list each original and the exact destination you'd move it to. Default to moving, never deleting. Only delete a source after the user explicitly confirms that specific file — "clear the inbox" is not consent to delete.
 
 ## 3. Export from another AI (copy-paste prompts)
 

@@ -1,7 +1,7 @@
 ---
 type: doc
 last_updated: YYYY-MM-DD
-last_updated_by: [Current human]
+last_updated_by: "[Current human]"
 ---
 
 # [Term]

@@ -1,6 +1,10 @@
 ---
 type: doc
+owner: "[Owner]"
 status: draft
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
 ---
 
 # Setup checklist
@@ -16,7 +20,7 @@ This OS was created from the **GTM OS** template. Work through this once — an 
 
 ## Steps
 
-- [ ] **Company basics** — name + one-liner filled into `foundations/` and the root `README.md` / `AGENTS.md` (no more `[Company Name]`).
+- [ ] **Company basics** — name + one-liner filled into `foundations/` and the root `README.md` (no more `[Company Name]`).
 - [ ] **Prefill source chosen** — connected the Palette connector, dropped docs to prefill, pasted context from another AI, or decided to go manual.
 - [ ] **Brand & voice captured** — `foundations/brand/voice.md`, `messaging.md`, `positioning.md` reflect how you actually sound.
 - [ ] **Market defined** — `foundations/market/icp.md` and any competitor intel filled in.

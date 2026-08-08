@@ -43,8 +43,9 @@ understandable without the source. Keep external links for provenance. Do not im
 restricted transcripts, unnecessary private details, or bulk raw exports; link, anonymize, or
 summarize them.
 
-After the material is filed, move the original to the narrowest durable location or remove it only
-with the user's approval.
+After the material is filed, propose what happens to the original — the narrowest durable location
+you would move it to, or removal. Both are workspace writes, so both need the user's approval
+before you act. Default to moving rather than removing.
 
 ## 3. Exports from another AI or tool
 

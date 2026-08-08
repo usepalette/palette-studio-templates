@@ -1,9 +1,9 @@
 ---
 type: strategy
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 read_when: [You're setting direction, writing a narrative, or sanity-checking a bet against the long game]
 ---

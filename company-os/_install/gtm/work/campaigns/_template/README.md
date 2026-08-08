@@ -1,9 +1,9 @@
 ---
 type: campaign
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 ---
 
@@ -20,11 +20,11 @@ edit_policy: team
 
 ## Audience
 
-[Who this is for — link `../../foundations/market/icp.md` if it's a segment.]
+[Who this is for — link `../../../foundations/market/icp.md` if it's a segment.]
 
 ## The hook / offer
 
-[The core message or offer. Why should they care right now? Load `../../foundations/brand/` before writing copy.]
+[The core message or offer. Why should they care right now? Load `../../../foundations/brand/` before writing copy.]
 
 ## Channels
 
@@ -37,4 +37,4 @@ edit_policy: team
 
 ## Results
 
-[Filled after: what happened vs. the goal, and the one lesson worth keeping — promote it to `../../log.md`.]
+[Filled after: what happened vs. the goal, and the one lesson worth keeping — promote it to `../../../log.md`.]

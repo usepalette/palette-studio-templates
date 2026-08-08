@@ -1,3 +1,7 @@
+---
+type: doc
+---
+
 # Gemini adapter
 
 Read and follow the *entire* `AGENTS.md` in this folder, starting with its "First-run detection" and "Start here — before any task" sections.

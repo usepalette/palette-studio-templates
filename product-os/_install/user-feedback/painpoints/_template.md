@@ -6,8 +6,8 @@ companies:
 source_files:
   - ../feedback/YYYY-MM-DD_company_person_topic.md
 tags: []
-severity: [low | medium | high]
-frequency: [occasional | recurring | blocking]
+severity: "[low | medium | high]"
+frequency: "[occasional | recurring | blocking]"
 status: active
 ---
 

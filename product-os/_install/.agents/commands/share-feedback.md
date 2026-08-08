@@ -1,4 +1,5 @@
 ---
+type: command
 description: Draft a sourced feedback recap and optionally send it after explicit approval
 argument-hint: "<company, topic, or tag>"
 ---
@@ -61,15 +62,21 @@ Show the draft and ask what to do:
 Before any external send, show the exact content and destination and require an explicit yes.
 Discover available connector tools instead of hardcoding a provider or tool name.
 
-If the user chooses to save it, create the exact path shown above with:
+If the user chooses to save it, derive the company-or-topic slug yourself rather than pasting user
+text into the path: lowercase, kebab-case, a **single path segment**. Reject or rewrite anything
+containing `/`, `..`, or characters outside `a-z0-9-`. Then create the exact path shown above with:
 
 ```yaml
 ---
 type: doc
+owner: "[Responsible owner]"
+status: active
 date: YYYY-MM-DD
-topic: [Company or topic]
+topic: "[Company or topic]"
 source_files: [Every selected Product OS source]
-last_updated_by: [Current human]
+last_updated: YYYY-MM-DD
+last_updated_by: "[Current human]"
+edit_policy: team
 ---
 ```
 

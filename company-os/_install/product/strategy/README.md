@@ -1,9 +1,9 @@
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 ---
 
@@ -31,9 +31,13 @@ When input recurs or sharpens, promote it into a thesis here.
 
 ```
 ---
-title: [short thesis title]
-status: [draft | active | parked | archived]
-updated: YYYY-MM-DD
+type: strategy
+title: "[short thesis title]"
+owner: "[Owner]"
+status: "[draft | active | parked | archived]"
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: team
 contributors: [Name, ...]
 related: [other strategy/ files this connects to]
 ---

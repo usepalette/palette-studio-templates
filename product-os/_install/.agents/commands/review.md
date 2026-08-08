@@ -1,4 +1,5 @@
 ---
+type: command
 description: Review product work for evidence, traceability, hygiene, and completeness
 ---
 
@@ -50,7 +51,9 @@ For painpoints and requests:
 
 - Relative links resolve.
 - New files are listed where the folder README maintains a roster.
-- Full documents have frontmatter and a `type`.
+- Full documents carry the complete frontmatter contract — `type`, `owner`, `status`,
+  `last_updated`, `last_updated_by`, and `edit_policy` — matching what `/workspace-heal` enforces.
+  A `type` alone is not enough; a document `/review` passes must not be one `/workspace-heal` flags.
 - Dates are absolute and attribution names the human.
 - No unintended `[bracket placeholders]` remain outside templates or incomplete setup.
 - Canonical `.agents/` files and `.claude/` adapters remain aligned.

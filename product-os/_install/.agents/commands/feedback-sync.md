@@ -1,4 +1,5 @@
 ---
+type: command
 description: Rebuild the feedback dashboard data from markdown without changing the viewer code
 ---
 
@@ -18,6 +19,13 @@ Read markdown files under:
 Skip README and template files.
 
 ## 2. Normalize each item
+
+**Check access and privacy before building the item.** `index.html` is a shareable artifact, so
+everything you copy into it inherits the dashboard's audience, not the source file's. For each
+source: confirm the dashboard's audience is entitled to see it; anonymize or summarize restricted
+names, companies, and quotes; and exclude private transcripts and any source you cannot verify
+access to rather than pulling them in. `people`, `companies`, `source_url`, `summary`, and
+`details` are the fields that leak — treat them as the gate.
 
 Create one dashboard item with:
 

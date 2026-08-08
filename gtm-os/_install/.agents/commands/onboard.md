@@ -1,4 +1,5 @@
 ---
+type: command
 description: Set up this GTM OS for your company — fills the template with real content
 ---
 
@@ -23,7 +24,7 @@ Work through these in order. Ask one group of questions at a time — be convers
 Explain: "This folder is your GTM OS — a shared, AI-readable home for your commercial knowledge, brand, and active work. I'll set it up; you won't fill files by hand. The more you can hand me, the less I'll ask."
 
 Then work the **fastest available prefill source first** (details in the `prefill-context` skill):
-1. **Live connector.** Silently check for a live-context connector (e.g. Palette). If yes: pull the broadest company/GTM context, say "I found [connector] — I'll use it and confirm as I go," and fill Steps 2–6 automatically, asking only to confirm and fill gaps.
+1. **Live connector.** Silently check for a live-context connector (e.g. Palette) and discover the tools it actually exposes — don't assume tool names. If one is set up, say "I found [connector]," then **ask which sources are in scope** before reading anything. Pull only context relevant to Steps 2–6 rather than the broadest available dump, summarize the facts you propose to write, and get confirmation before any of it lands in a durable file. Never copy a feed wholesale.
 2. **Dropped docs.** Ask if they have a deck, positioning doc, existing brand guide, or CRM export; read them and extract company / product / market / brand / team.
 3. **Export from another AI.** Offer the paste-in path with the prompts in `prefill-context`.
 4. **Manual.** Otherwise, ask the questions in Steps 2–6.

@@ -1,3 +1,12 @@
+---
+type: doc
+owner: "[Owner]"
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
+---
+
 # GTM OS
 
 Your go-to-market as a file system — one folder of markdown where your commercial knowledge, active work, and team processes live, readable by your team *and* every AI agent.

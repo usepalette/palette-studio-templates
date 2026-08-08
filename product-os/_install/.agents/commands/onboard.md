@@ -1,4 +1,5 @@
 ---
+type: command
 description: Set up Product OS from connected context, existing documents, or one short conversation
 ---
 
@@ -72,7 +73,10 @@ Ask for one confirmation.
 
 After confirmation:
 
-1. Replace the root README landing page with its "After setup" living-index block.
+1. Replace the root README landing page with its "After setup" living-index block **only when it is
+   still the untouched starter**. On a partial setup the README may already carry real workspace
+   context — in that case update just the starter/setup block and leave everything else intact.
+   Never overwrite content a human has written.
 2. Fill `documentation/product-overview.md`.
 3. Fill ownership, dates, and attribution only in living workspace files: `lessons.md`, `log.md`,
    folder READMEs, the root README, and `documentation/product-overview.md`.

@@ -1,9 +1,9 @@
 ---
 type: doc
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 read_when: [You're describing the product — a page, a deck, a demo, an explainer]
 ---

@@ -1,9 +1,9 @@
 ---
 type: project
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 ---
 
@@ -34,4 +34,4 @@ edit_policy: team
 
 ## Links
 
-[Related docs, specs (`../../../product/specs/`), campaigns, or external tools.]
+[Related docs, specs (`../../../../product/specs/`), campaigns, or external tools.]

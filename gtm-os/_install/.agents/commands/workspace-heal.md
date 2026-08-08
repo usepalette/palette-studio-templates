@@ -1,4 +1,5 @@
 ---
+type: command
 description: Audit workspace structure for broken references, stale indexes, and misplaced files
 argument-hint: "[fix|report]"
 ---
@@ -41,7 +42,7 @@ Check for files clearly in the wrong location:
 - A dated recap (`YYYY-MM-DD-*.md`) sitting loose outside `log/sessions/`.
 - Files in root that should be in a subfolder.
 
-**Report:** each orphaned file with a suggested location. **Fix:** move it.
+**Report:** each orphaned file with a suggested location. **Fix:** list the exact `from → to` for every move and get confirmation before touching anything. "Orphaned" is a heuristic — a file that looks misplaced may be deliberate.
 
 ### 4. Work index freshness
 
@@ -68,7 +69,7 @@ Check the canonical + adapter split (`/.agents/` ↔ `/.claude/`):
 - Each `.claude/` adapter points to its canonical file with `../../.agents/{commands|skills}/{filename}`.
 - If the canonical file has YAML frontmatter, the adapter carries the same frontmatter.
 
-**Report:** missing/extra/mismatched adapters or stale adapter frontmatter. **Fix:** create or update the adapter, preserving the canonical frontmatter, then point to the canonical file.
+**Report:** missing/extra/mismatched adapters or stale adapter frontmatter. **Fix:** creating or rewriting an adapter is a content write — show the exact file and the frontmatter/body you'd write, and confirm before applying. Only the deterministic, reversible part (copying the canonical frontmatter verbatim and pointing the body at the canonical file) is eligible for automatic repair; anything ambiguous stays a report-only suggestion.
 
 ### 8. Frontmatter & `type` coverage
 

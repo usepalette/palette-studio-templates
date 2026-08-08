@@ -1,9 +1,9 @@
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: draft
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: team
 ---
 
@@ -38,9 +38,14 @@ Discovery sits upstream of strategy and specs:
 
 ```
 ---
-title: [short question domain]
-status: [open | in-flight | promoted | closed]
+type: research
+title: "[short question domain]"
+owner: "[Owner]"
+status: "[open | in-flight | promoted | closed]"
 opened: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: team
 contributors: [Name, ...]
 constraints: [explicit limits on the solution space]
 ---

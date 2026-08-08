@@ -1,4 +1,5 @@
 ---
+type: command
 description: Draft and save a tight product spec linked to its evidence
 argument-hint: "<problem or feature brief>"
 ---

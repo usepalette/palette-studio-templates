@@ -1,3 +1,12 @@
+---
+type: doc
+owner: "[Owner]"
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
+---
+
 # Product OS
 
 Your product work as a file system: user feedback, discovery, strategy, specs, competitors, and

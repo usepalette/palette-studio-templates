@@ -1,11 +1,11 @@
 ---
 type: research
-title: [Short question domain]
-owner: [Responsible owner]
-status: [open | in-flight | promoted | closed]
+title: "[Short question domain]"
+owner: "[Responsible owner]"
+status: "[open | in-flight | promoted | closed]"
 opened: YYYY-MM-DD
 last_updated: YYYY-MM-DD
-last_updated_by: [Current human]
+last_updated_by: "[Current human]"
 edit_policy: team
 contributors: []
 constraints: []
