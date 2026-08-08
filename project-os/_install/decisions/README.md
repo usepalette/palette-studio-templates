@@ -30,7 +30,8 @@ Don't bother logging trivial choices.
 
 - **Filename:** `NNNN-short-title.md`, padded to 4 digits, e.g. `0007-use-postgres-for-events.md`.
 - **Template:** copy [`TEMPLATE.md`](./TEMPLATE.md) — or run `/new-decision`, which numbers, stamps, and indexes it for you.
-- **Don't delete or rewrite old decisions.** If a decision is superseded, add a new file and mark the old one as superseded.
+- **Don't delete or rewrite old decisions.** A decision record is immutable history. If a decision is superseded, add a new file and mark the old one as superseded — never edit the original away.
+- **The one exception:** decision files flagged `sample: true` in their frontmatter are shipped template examples, not history. Those may be deleted during initial onboarding. Anything without that flag stays.
 
 ## Index
 

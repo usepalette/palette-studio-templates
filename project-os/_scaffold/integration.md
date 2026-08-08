@@ -14,12 +14,15 @@ dashboard works the moment they open it. Every sample file is flagged `sample: t
    `overview.html` for the live dashboard (it currently shows the Acme sample, with a banner
    saying so). Don't read `AGENTS.md` or the README to them.
 
-2. Run the `/onboard` command. It walks through the project basics (name, client, dates,
-   leads), stakeholders, scope, and goals — then replaces the sample with real content, swaps
-   the README landing page for the project index, and regenerates the dashboard. The full
-   conversational flow is defined in `.claude/commands/onboard.md` (already placed) — follow
-   it as written. Prefer pulling context from the Palette MCP or docs the user drops in
-   `_inbox/` before asking questions; keep any questions to one short round.
+2. Run the `/onboard` command — do this now, as part of install; don't wait for the user to
+   ask. It walks through the project basics (name, client, dates, leads), stakeholders, scope,
+   and goals — then replaces the sample with real content, swaps the README landing page for
+   the project index, and regenerates the dashboard. The full conversational flow is defined
+   in the canonical `.agents/commands/onboard.md` (already placed; `.claude/commands/onboard.md`
+   is a thin adapter pointing at it) — follow it as written. Prefer pulling context from the
+   Palette MCP or docs the user drops in `_inbox/` before asking questions; keep any questions
+   to one short round. If the user wants to stop partway, leave the open boxes in `SETUP.md` —
+   that's the signal for the next session to resume, and `/onboard` is safe to re-run.
 
 3. After `/onboard` finishes, give a quick summary:
    - What you filled in (project metadata in `context/project.md`, stakeholders, scope, goals).

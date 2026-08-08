@@ -17,19 +17,22 @@ Built for teams running one project or client engagement with AI agents — agen
 This template ships **pre-filled with a sample project** (*Acme Co. — Customer Portal Rebuild*) so the dashboard works the moment you open it — nothing looks empty. When you install, an agent will:
 
 1. Place the workspace on disk (the folders, the dashboard, the commands).
-2. Run `/onboard` — pulling your project, client, stakeholders, and timeline from the Palette MCP or dropped docs where it can, and asking you for the rest in one short round — then **replace the sample with your real project** and regenerate the dashboard.
+2. Run `/onboard` automatically, right there in the install conversation — pulling your project, client, stakeholders, and timeline from the Palette MCP or dropped docs where it can, and asking you for the rest in one short round — then **replace the sample with your real project** and regenerate the dashboard.
+
+You never have to trigger onboarding yourself. If it doesn't finish in one go (you close the session, or you'd rather fetch the SOW first), the next agent to open the folder sees the unchecked boxes in `SETUP.md` and offers to pick up where it left off — or you can say **"set me up"** (or run `/onboard`) to resume it on demand. Onboarding is safe to re-run: it detects what's already real and only fills the gaps.
 
 Palette Desktop creates a checkpoint right before install so you can revert.
 
 ## After install
 
-```bash
-# open overview.html for the live dashboard, then:
-set me up                 # (or /onboard) replace the sample with your project
-/new-decision "Use Postgres over Mongo"   # log a decision, numbered + indexed
-/new-meeting "Weekly client sync"         # scaffold meeting notes
-/finish-session           # wrap up: recap, follow-ups, a memory line
-/workspace-heal           # weekly audit: links, indexes, dashboard drift
+Open `overview.html` for the live dashboard. Then, in your agent, these commands are available:
+
+```text
+/onboard        resume or re-run setup (also triggered by saying "set me up")
+/new-decision   log a decision, numbered + indexed — e.g. /new-decision "Use Postgres over Mongo"
+/new-meeting    scaffold meeting notes, stamped + indexed — e.g. /new-meeting "Weekly client sync"
+/finish-session wrap up a session: recap, follow-ups, a memory line
+/workspace-heal weekly audit: links, indexes, dashboard drift
 ```
 
-Open `overview.html` any time for the project status at a glance. Everything else is plain markdown you can read, edit, and version-control.
+These are agent commands, not shell commands — type them to your coding agent, or just describe what you want in plain language. Everything else is plain markdown you can read, edit, and version-control.

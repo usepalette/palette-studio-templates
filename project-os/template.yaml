@@ -17,6 +17,9 @@ requires:
   palette_desktop: ">=0.5"
 
 notes: |
-  After install, open overview.html for the live dashboard, then say "set me up"
-  (or run /onboard) to replace the sample project with your real one. Log decisions
-  with /new-decision, meetings with /new-meeting, and wrap up sessions with /finish-session.
+  The installing agent runs /onboard automatically as the last install step, replacing the
+  sample project with your real one — you don't have to trigger it. If it doesn't finish,
+  SETUP.md keeps the open boxes and any agent picks it up next session; you can also say
+  "set me up" (or run /onboard) to resume, and it's safe to re-run. Open overview.html for
+  the live dashboard. Log decisions with /new-decision, meetings with /new-meeting, and wrap
+  up sessions with /finish-session.

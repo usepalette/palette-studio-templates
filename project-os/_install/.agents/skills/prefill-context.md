@@ -1,4 +1,5 @@
 ---
+type: skill
 name: prefill-context
 description: How to prefill the project OS from existing sources — a live connector, docs dropped in _inbox/, or context exported from another AI (Claude, ChatGPT, Gemini) or tool (Notion, Slack, Granola, a CRM). Use during /onboard or whenever setting up / backfilling the OS.
 ---
@@ -24,7 +25,7 @@ If the user has dropped files in `_inbox/` (or points you at any folder/files):
 - Read everything. Common inputs: the brief, SOW / contract, proposal, kickoff deck or notes, project plan, org chart or contact list, meeting notes, transcripts.
 - Extract: project one-liner, client name, scope (in / out), key deliverables, stakeholders + roles on both sides, timeline / milestones, goals, and any decisions already made.
 - File each fact into the right folder (`context/`, `admin/`, `decisions/`, `meetings/`), using the scaffolding commands (`/new-decision`, `/new-meeting`) where they apply, not by hand.
-- When done, tell the user what you filed and **clear `_inbox/`** (move originals into the folder they informed, or delete if fully absorbed).
+- When done, tell the user what you filed and **clear `_inbox/` non-destructively**: move each original into the folder it informed (or into `_inbox/archive/` if it doesn't belong anywhere else). **Never delete a dropped file** — it may be the only copy — unless the user explicitly confirms that specific deletion.
 
 ## 3. Export from another AI (copy-paste prompts)
 
@@ -56,3 +57,5 @@ No connector, no docs, nothing to paste? Ask the `/onboard` questions directly a
 ---
 
 **After any source:** update `SETUP.md` (tick the boxes you completed), tell the user what got filled vs. what's still `[placeholder]`, and point them at the next cheapest source for the gaps.
+
+**If you wrote to any dashboard source** — `context/project.md`, `admin/timeline.md`, `deliverables/milestones.md`, `context/stakeholders.md`, or `context/goals.md` — **regenerate the `overview.html` `data-snapshot`** from those five files before you finish (see `AGENTS.md` → "The dashboard"). This applies whenever this skill is used, not just inside `/onboard`: without it the dashboard keeps rendering the old snapshot in viewers that can't read sibling files.

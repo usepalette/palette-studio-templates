@@ -1,4 +1,5 @@
 ---
+type: command
 description: Audit workspace structure for broken references, stale indexes, and misplaced files
 argument-hint: "[fix|report]"
 ---
@@ -67,11 +68,11 @@ The `overview.html` dashboard renders from a `data-snapshot` JSON block that mir
 Verify the index lists match the files on disk:
 - Every row in `decisions/README.md` points to a `decisions/NNNN-*.md` that exists, and every `decisions/NNNN-*.md` on disk appears in the index. Flag numbering gaps or duplicate NNNN.
 - Every row in `meetings/README.md` points to a `meetings/YYYY-MM-DD-*.md` that exists, and every meeting note on disk appears in the index.
-- Cross-check the root README `recentMeetings` / `recentDecisions` against the newest files.
+- Cross-check the `recentMeetings` / `recentDecisions` lists in `context/project.md` frontmatter (the dashboard's source, *not* the root README) against the newest files on disk — every entry must name a file that exists, and the newest meetings/decisions should be listed.
 
-**Report:** Listed-but-missing, exists-but-unlisted, numbering gaps or duplicates.
+**Report:** Listed-but-missing, exists-but-unlisted, numbering gaps or duplicates, and `recentMeetings` / `recentDecisions` entries that are stale or point at deleted files.
 
-**Fix:** Update the index (and the dashboard lists) to match reality. Never create stub files.
+**Fix:** Update the index and bring `context/project.md`'s `recentMeetings` / `recentDecisions` back in sync with the files on disk, then regenerate the `overview.html` `data-snapshot` so the dashboard matches. Never create stub files.
 
 ### 6. AGENTS.md navigation paths
 
@@ -101,7 +102,7 @@ Every content `.md` should carry frontmatter with a `type` (the "stamp on creati
 - Flag content `.md` files with **no frontmatter** or **no `type:`** field.
 - Flag frontmatter keys that aren't `snake_case`. Allowed exceptions (do NOT flag): `argument-hint` (a Claude Code harness key), and the dashboard-contract keys in `context/project.md` — `recentMeetings`, `recentDecisions`, `ourLead`, `clientLead` — which `overview.html` reads by exact name. Renaming those would break the dashboard.
 
-**Exclude:** agent/behaviour files (`AGENTS.md`, `CLAUDE.md` / `GEMINI.md` / `.vibe/AGENTS.md`), `TEMPLATE.md` files (their placeholders are intentional), and generated viewers.
+**Exclude:** `TEMPLATE.md` files (their placeholders are intentional) and generated viewers. The agent/behaviour files (`AGENTS.md`, `CLAUDE.md` / `GEMINI.md` / `.vibe/AGENTS.md`) ship with `type: doc` frontmatter, so they are checked like any other file.
 
 **Report:** files missing frontmatter or `type`; non-snake_case keys (excluding the allowed exceptions above).
 

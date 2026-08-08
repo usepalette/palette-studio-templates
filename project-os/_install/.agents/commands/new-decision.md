@@ -1,4 +1,5 @@
 ---
+type: command
 description: Scaffold a decisions/NNNN-slug.md from the template, auto-numbered, and index it
 argument-hint: "<short decision title>"
 ---
@@ -20,10 +21,11 @@ Scaffold `decisions/NNNN-slug.md` from `decisions/TEMPLATE.md` and add it to the
 
 1. **Find the next number.** List `decisions/NNNN-*.md`, take the highest `NNNN`, add one, and zero-pad to 4 digits (`0007`). If none exist yet, start at `0001`.
 2. **Copy the template.** Create `decisions/<NNNN>-<slug>.md` from `decisions/TEMPLATE.md`.
-3. **Stamp it.** Fill the title heading and frontmatter: `type: decision`, the decision number, `date` = today (`YYYY-MM-DD`), `status` (e.g. `proposed`), `last_updated` = today, `last_updated_by`. Fill any context you were given; leave the rest as the template's prompts.
+3. **Stamp it.** Fill the title heading and frontmatter: `type: decision`, the decision number, `date` = today (`YYYY-MM-DD`), `status` (e.g. `proposed`), `last_updated` = today, and `last_updated_by` = **the human you're doing this for**, not you the agent (ask if you don't know who to credit). These files are a record of who decided what — an agent name in that field makes the record useless.
 4. **Add to the index.** Append a row to the table in `decisions/README.md`: `| [<NNNN>](<NNNN>-<slug>.md) | <title> | <date> | <status> |` (match the index's actual columns — the number is the link).
-5. **No fabrication.** Where a section has no real info, leave the template's placeholder.
-6. **Confirm.** Print the path created and the index row added.
+5. **Update the dashboard.** The project tracks recent decisions in `context/project.md` frontmatter (`recentDecisions`) — add this decision there (newest first), then regenerate the `overview.html` `data-snapshot` so the dashboard reflects it (see `AGENTS.md` → "The dashboard").
+6. **No fabrication.** Where a section has no real info, leave the template's placeholder.
+7. **Confirm.** Print the path created, the index row added, and the dashboard update.
 
 ## Notes
 

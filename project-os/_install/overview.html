@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Project Overview</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M9 22V10h5a4 4 0 0 1 0 8H9' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
-<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.3.1/dist/js-yaml.min.js"
+        integrity="sha384-S9ICdlb+JXmKnf3zbM1G+PBNWbhB7ARTUpJyvroFrHHHR8JsKt4oO+kPyfzbT+TM"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
   :root {
     /* Neutral slate / indigo palette */
@@ -345,7 +347,9 @@ function miniYaml(text) {
     if (v === 'true') return true;
     if (v === 'false') return false;
     if (v === 'null' || v === '~' || v === '') return null;
-    if (!isNaN(Number(v))) return Number(v);
+    // Only coerce plain YAML numbers. Leading zeros ("0001", "007") stay strings,
+    // as YAML itself treats them — decision numbers must not become 1.
+    if (/^-?(0|[1-9]\d*)(\.\d+)?([eE][-+]?\d+)?$/.test(v)) return Number(v);
     return v;
   }
   function block(minIndent) {
@@ -430,16 +434,46 @@ async function loadYaml(path) {
   }
 }
 
+// All frontmatter dates are plain YYYY-MM-DD calendar days. `new Date('2026-06-02')`
+// parses those as UTC midnight, which lands on the previous day west of UTC and
+// skews every comparison against a local "today". Parse them as local midnight so
+// the day counter, the active-phase highlight, the today-line, and past-due state
+// all sit on the same boundary.
+function parseDate(d) {
+  if (d instanceof Date) return d;
+  if (d == null) return new Date(NaN);
+  const m = String(d).trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  return new Date(d);
+}
+
+// Local midnight — the single boundary every date comparison below uses.
+function startOfToday() {
+  const t = new Date();
+  t.setHours(0, 0, 0, 0);
+  return t;
+}
+
+function escapeHtml(v) {
+  if (v == null) return '';
+  return String(v)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function fmtDate(d) {
   if (!d) return '';
-  const date = (d instanceof Date) ? d : new Date(d);
+  const date = parseDate(d);
   if (isNaN(date)) return String(d);
   return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
 function fmtShortDate(d) {
   if (!d) return '';
-  const date = (d instanceof Date) ? d : new Date(d);
+  const date = parseDate(d);
   if (isNaN(date)) return String(d);
   return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
 }
@@ -468,14 +502,17 @@ function renderHero(meta) {
 
   const status = (meta.phase || meta.status || 'discovery').toString().toLowerCase();
   const pill = document.getElementById('status-pill');
-  pill.classList.add(status);
+  // classList.add throws on empty or whitespace-bearing tokens, which would abort
+  // the whole render — reduce a free-text phase to a single safe class token.
+  const statusClass = status.trim().replace(/\s+/g, '-').replace(/[^a-z0-9_-]/g, '');
+  if (statusClass) pill.classList.add(statusClass);
   setText('status-text', status);
 
   // Day X of Y
-  const kickoff = meta.kickoff ? new Date(meta.kickoff) : null;
-  const end = meta.end ? new Date(meta.end) : null;
+  const kickoff = meta.kickoff ? parseDate(meta.kickoff) : null;
+  const end = meta.end ? parseDate(meta.end) : null;
   if (kickoff && end && !isNaN(kickoff) && !isNaN(end)) {
-    const today = new Date(); today.setHours(0,0,0,0);
+    const today = startOfToday();
     const total = Math.max(1, Math.round((end - kickoff) / 86400000));
     const elapsed = Math.max(0, Math.min(total, Math.round((today - kickoff) / 86400000)));
     setText('day-num', `Day ${elapsed} of ${total}`);
@@ -493,8 +530,8 @@ function renderTimeline(data, meta) {
   }
   const phases = data.phases.map(p => ({
     name: p.name,
-    start: new Date(p.start),
-    end: new Date(p.end),
+    start: parseDate(p.start),
+    end: parseDate(p.end),
   })).filter(p => !isNaN(p.start) && !isNaN(p.end));
   if (!phases.length) {
     bar.parentElement.innerHTML = '<div class="error-note">No valid phase dates yet. Fill in the <code>phases</code> block in <a href="./admin/timeline.md">admin/timeline.md</a>.</div>';
@@ -504,7 +541,7 @@ function renderTimeline(data, meta) {
   const totalStart = phases[0].start;
   const totalEnd = phases[phases.length - 1].end;
   const totalMs = totalEnd - totalStart;
-  const today = new Date(); today.setHours(0,0,0,0);
+  const today = startOfToday();
 
   phases.forEach(p => {
     const leftPct = ((p.start - totalStart) / totalMs) * 100;
@@ -515,7 +552,7 @@ function renderTimeline(data, meta) {
     else if (today > p.end) div.classList.add('past');
     div.style.left = leftPct + '%';
     div.style.width = widthPct + '%';
-    div.innerHTML = `<div class="phase-name">${p.name}</div><div class="phase-dates">${fmtShortDate(p.start)} – ${fmtShortDate(p.end)}</div>`;
+    div.innerHTML = `<div class="phase-name">${escapeHtml(p.name)}</div><div class="phase-dates">${escapeHtml(fmtShortDate(p.start))} – ${escapeHtml(fmtShortDate(p.end))}</div>`;
     bar.appendChild(div);
   });
 
@@ -547,12 +584,12 @@ function renderGoals(data) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <div class="goal-title">${o.title || ''}</div>
-      <div class="goal-metric">${o.metric || ''}</div>
+      <div class="goal-title">${escapeHtml(o.title)}</div>
+      <div class="goal-metric">${escapeHtml(o.metric)}</div>
       <div class="goal-flow">
-        <span class="goal-baseline">${o.baseline || ''}</span>
+        <span class="goal-baseline">${escapeHtml(o.baseline)}</span>
         <span class="goal-arrow">→</span>
-        <span class="goal-target">${o.target || ''}</span>
+        <span class="goal-target">${escapeHtml(o.target)}</span>
       </div>`;
     root.appendChild(card);
   });
@@ -579,15 +616,15 @@ function renderStakeholders(data) {
     const grid = document.createElement('div');
     grid.className = 'grid cols-3';
     groups[key].forEach(s => {
-      const initials = s.initials || (s.name || '?').split(/\s+/).map(w => w[0]).slice(0,2).join('').toUpperCase();
+      const initials = String(s.initials || (s.name || '?').split(/\s+/).map(w => w[0]).slice(0,2).join('')).toUpperCase();
       const a = document.createElement('a');
       a.className = 'card person-card';
       a.href = './context/stakeholders.md';
       a.innerHTML = `
-        <div class="avatar" style="background:${avatarColor(initials)}">${initials}</div>
+        <div class="avatar" style="background:${escapeHtml(avatarColor(initials))}">${escapeHtml(initials)}</div>
         <div>
-          <div class="person-name">${s.name || ''}</div>
-          <div class="person-role">${s.role || ''}</div>
+          <div class="person-name">${escapeHtml(s.name)}</div>
+          <div class="person-role">${escapeHtml(s.role)}</div>
         </div>`;
       grid.appendChild(a);
     });
@@ -603,21 +640,21 @@ function renderMilestones(data) {
     root.outerHTML = '<div class="error-note">No milestones yet. Add a <code>milestones</code> block to <a href="./deliverables/milestones.md">deliverables/milestones.md</a>.</div>';
     return;
   }
-  const today = new Date(); today.setHours(0,0,0,0);
-  const sorted = [...data.milestones].sort((a, b) => new Date(a.due) - new Date(b.due));
+  const today = startOfToday();
+  const sorted = [...data.milestones].sort((a, b) => parseDate(a.due) - parseDate(b.due));
   sorted.forEach(m => {
-    const due = new Date(m.due);
-    const status = (m.status || 'planned').toLowerCase();
+    const due = parseDate(m.due);
+    const status = String(m.status || 'planned').toLowerCase();
     const pastDue = !isNaN(due) && due < today && status !== 'done';
     const row = document.createElement('div');
     row.className = 'milestone-row';
     row.innerHTML = `
-      <div class="milestone-date${pastDue ? ' past-due' : ''}">${fmtDate(due)}</div>
+      <div class="milestone-date${pastDue ? ' past-due' : ''}">${escapeHtml(fmtDate(due))}</div>
       <div>
-        <div class="milestone-name">${m.name || ''}</div>
-        ${m.description ? `<div class="milestone-desc">${m.description}</div>` : ''}
+        <div class="milestone-name">${escapeHtml(m.name)}</div>
+        ${m.description ? `<div class="milestone-desc">${escapeHtml(m.description)}</div>` : ''}
       </div>
-      <span class="pill ${status}"><span class="pill-dot"></span>${status.replace('-', ' ')}</span>`;
+      <span class="pill ${escapeHtml(status)}"><span class="pill-dot"></span>${escapeHtml(status.replace('-', ' '))}</span>`;
     root.appendChild(row);
   });
 }
@@ -626,7 +663,7 @@ function meetingTitleFromFilename(f) {
   // 2026-01-01-kickoff.md → { date: "Jan 1", title: "Kickoff" }
   const m = f.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/);
   if (!m) return { date: '', title: f };
-  const d = new Date(`${m[1]}-${m[2]}-${m[3]}`);
+  const d = parseDate(`${m[1]}-${m[2]}-${m[3]}`);
   const title = m[4].replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   return { date: fmtShortDate(d), title };
 }
@@ -647,11 +684,11 @@ function renderActivityList(rootId, files, folder, fn) {
     return;
   }
   files.forEach(f => {
-    const { date, title } = fn(f);
+    const { date, title } = fn(String(f));
     const a = document.createElement('a');
     a.className = 'activity-item';
-    a.href = `./${folder}/${f}`;
-    a.innerHTML = `<div class="activity-date">${date}</div><div class="activity-title">${title}</div>`;
+    a.href = `./${folder}/${encodeURIComponent(String(f))}`;
+    a.innerHTML = `<div class="activity-date">${escapeHtml(date)}</div><div class="activity-title">${escapeHtml(title)}</div>`;
     root.appendChild(a);
   });
 }

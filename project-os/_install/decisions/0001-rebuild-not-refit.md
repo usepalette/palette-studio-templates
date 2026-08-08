@@ -13,7 +13,7 @@ last_updated_by: Sam Rivera
 - **Status:** accepted
 - **Decided by:** Sam Rivera, Jordan Lee, Alex Chen
 
-> **Sample decision** — this ships as an example so the workspace isn't empty. Delete it (and clear the `sample: true` flags) when you set up your real project.
+> **Sample decision** — this ships as an example so the workspace isn't empty. Delete *this file* (and its index row) during onboarding, once your real project is in. Real decision records are immutable — only files flagged `sample: true` are safe to remove.
 
 ## Context
 

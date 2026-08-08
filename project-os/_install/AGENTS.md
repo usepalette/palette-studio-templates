@@ -1,3 +1,12 @@
+---
+type: doc
+owner: [Owner]
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: [Owner]
+edit_policy: everyone
+---
+
 # [Project] OS
 
 A shared, AI-readable workspace for **one project** — the context, decisions, meetings, research, design, and deliverables for a single engagement. Everyone involved (your team, the client, and every AI agent) can open this folder and understand where the project stands.

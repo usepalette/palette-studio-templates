@@ -1,5 +1,10 @@
 ---
 type: index
+owner: [Owner]
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: [Owner]
+edit_policy: everyone
 ---
 
 # Project commands
@@ -11,8 +16,8 @@ Canonical slash-commands for this project OS. These are the real command files; 
 | Command | What it does |
 |---------|-------------|
 | `/onboard` | Set up this OS for your project — fills the template with real content. Run this first. |
-| `/new-decision` | Scaffold a `decisions/NNNN-slug.md` from the template, auto-numbered, and add it to the decisions index. |
-| `/new-meeting` | Scaffold a `meetings/YYYY-MM-DD-slug.md` from the template, stamped with today's date, and add it to the meetings index. |
+| `/new-decision` | Scaffold a `decisions/NNNN-slug.md` from the template, auto-numbered, add it to the decisions index, and update the dashboard (`recentDecisions` + snapshot). |
+| `/new-meeting` | Scaffold a `meetings/YYYY-MM-DD-slug.md` from the template, stamped with today's date, add it to the meetings index, and update the dashboard (`recentMeetings` + snapshot). |
 | `/finish-session` | Wrap up the session — recap, follow-ups, memory line in the root `lessons.md` / `log.md`. |
 | `/workspace-heal` | Audit the workspace for broken links, stale indexes, orphaned files, snapshot drift, and adapter drift. `report` (default) or `fix`. |
 
