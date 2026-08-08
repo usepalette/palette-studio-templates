@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project Overview</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M9 22V10h5a4 4 0 0 1 0 8H9' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.3.1/dist/js-yaml.min.js"
+        integrity="sha384-S9ICdlb+JXmKnf3zbM1G+PBNWbhB7ARTUpJyvroFrHHHR8JsKt4oO+kPyfzbT+TM"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+  :root {
+    /* Neutral slate / indigo palette */
+    --accent: #4f46e5;          /* indigo */
+    --accent-soft: #e0e7ff;     /* indigo-100 */
+    --bg: #f8fafc;              /* slate-50 */
+    --surface: #ffffff;
+    --surface-2: #f1f5f9;       /* slate-100 */
+    --text: #1e293b;            /* slate-800 */
+    --text-muted: #64748b;      /* slate-500 */
+    --border: rgba(15, 23, 42, 0.08);
+    --border-strong: rgba(15, 23, 42, 0.16);
+    --radius: 12px;
+    --shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #818cf8;
+      --accent-soft: rgba(129, 140, 248, 0.16);
+      --bg: #0f172a;            /* slate-900 */
+      --surface: #1e293b;       /* slate-800 */
+      --surface-2: #26334a;
+      --text: #f1f5f9;          /* slate-100 */
+      --text-muted: #94a3b8;
+      --border: rgba(241, 245, 249, 0.08);
+      --border-strong: rgba(241, 245, 249, 0.16);
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "SF Pro Text", "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+  a { color: inherit; text-decoration: none; }
+  .page { max-width: 1120px; margin: 0 auto; padding: 40px 32px 96px; }
+
+  /* SAMPLE BANNER */
+  .sample-banner { display: flex; gap: 10px; align-items: center; justify-content: center; text-align: center; background: var(--accent-soft); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 11px 16px; margin-bottom: 28px; font-size: 13px; line-height: 1.4; }
+  .sample-banner code { background: var(--surface); padding: 1px 6px; border-radius: 6px; font-size: 12px; }
+
+  /* BRAND BAR */
+  .brand-bar { display: flex; align-items: center; margin-bottom: 40px; }
+  .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--text); opacity: 0.72; }
+  .brand-mark { width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; }
+  .brand-name { font-size: 14px; font-weight: 600; letter-spacing: -0.005em; }
+
+  /* HERO */
+  .hero { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; margin-bottom: 56px; }
+  .hero-left { min-width: 0; }
+  .client { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .project { font-size: 44px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 16px; line-height: 1.1; }
+  .description { color: var(--text-muted); font-size: 17px; max-width: 640px; margin: 0; }
+  .hero-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; flex-shrink: 0; }
+  .updated { font-size: 12px; color: var(--text-muted); }
+
+  /* PILLS */
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; text-transform: capitalize; }
+  .pill-dot { width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+  .pill.discovery { background: #ede9fe; color: #6d28d9; }
+  .pill.design    { background: #e0e7ff; color: #4338ca; }
+  .pill.build     { background: #dbeafe; color: #1d4ed8; }
+  .pill.launch    { background: #dcfce7; color: #15803d; }
+  .pill.planned     { background: #f1f5f9; color: #475569; }
+  .pill.in-progress { background: #dbeafe; color: #1d4ed8; }
+  .pill.done        { background: #dcfce7; color: #15803d; }
+  .pill.delayed     { background: #fef3c7; color: #b45309; }
+  @media (prefers-color-scheme: dark) {
+    .pill.discovery   { background: rgba(124, 58, 237, 0.18); color: #c4b5fd; }
+    .pill.design      { background: rgba(79, 70, 229, 0.2);  color: #a5b4fc; }
+    .pill.build       { background: rgba(29, 78, 216, 0.2);  color: #93c5fd; }
+    .pill.launch      { background: rgba(21, 128, 61, 0.2);  color: #86efac; }
+    .pill.planned     { background: rgba(100, 116, 139, 0.2); color: #cbd5e1; }
+    .pill.in-progress { background: rgba(29, 78, 216, 0.2);   color: #93c5fd; }
+    .pill.done        { background: rgba(21, 128, 61, 0.2);   color: #86efac; }
+    .pill.delayed     { background: rgba(180, 83, 9, 0.2);    color: #fcd34d; }
+  }
+
+  /* DAY COUNTER */
+  .day-counter { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; text-align: right; box-shadow: var(--shadow); }
+  .day-counter-num { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; }
+  .day-counter-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* SECTION HEADERS */
+  section { margin-bottom: 56px; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; }
+  .section-title { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0; }
+  .section-link { font-size: 13px; color: var(--text-muted); transition: color 0.15s; }
+  .section-link:hover { color: var(--accent); }
+
+  /* TIMELINE */
+  .timeline-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px 22px; box-shadow: var(--shadow); }
+  .timeline-bar { position: relative; height: 56px; border-radius: 10px; background: var(--surface-2); border: 1px solid var(--border); overflow: visible; }
+  .phase { position: absolute; top: 0; bottom: 0; padding: 10px 14px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; min-width: 0; overflow: hidden; transition: background 0.15s; }
+  .phase:last-child { border-right: none; }
+  .phase-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .phase-dates { font-size: 11px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .phase.active { background: var(--accent-soft); }
+  .phase.past { opacity: 0.55; }
+  .today-line { position: absolute; top: -8px; bottom: -8px; width: 2px; background: var(--accent); border-radius: 1px; pointer-events: none; }
+  .today-label { position: absolute; top: -26px; transform: translateX(-50%); font-size: 10px; font-weight: 600; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .timeline-legend { display: flex; justify-content: space-between; margin-top: 14px; font-size: 12px; color: var(--text-muted); }
+
+  /* CARDS GRID (goals, stakeholders, sections) */
+  .grid { display: grid; gap: 16px; }
+  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 900px) { .grid.cols-3, .grid.cols-4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; } .hero { flex-direction: column; } .hero-right { align-items: flex-start; text-align: left; } .day-counter { text-align: left; } .project { font-size: 32px; } }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); transition: border-color 0.15s, transform 0.15s; }
+  a.card { display: block; }
+  a.card:hover { border-color: var(--border-strong); }
+
+  /* GOALS */
+  .goal-title { font-size: 15px; font-weight: 600; margin: 0 0 14px; }
+  .goal-metric { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+  .goal-flow { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .goal-baseline { color: var(--text-muted); }
+  .goal-arrow { color: var(--text-muted); font-size: 12px; }
+  .goal-target { font-weight: 600; color: var(--accent); }
+
+  /* STAKEHOLDERS */
+  .side-group { margin-bottom: 24px; }
+  .side-group:last-child { margin-bottom: 0; }
+  .side-label { font-size: 11px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .person-card { display: flex; align-items: center; gap: 14px; padding: 14px 16px; }
+  .avatar { width: 40px; height: 40px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: white; flex-shrink: 0; letter-spacing: 0.02em; }
+  .person-name { font-weight: 600; font-size: 14px; }
+  .person-role { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+
+  /* MILESTONES */
+  .milestone-row { display: grid; grid-template-columns: 110px 1fr auto; align-items: center; gap: 20px; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+  .milestone-row:last-child { border-bottom: none; }
+  .milestone-list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .milestone-date { font-size: 13px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .milestone-date.past-due { color: #b45309; font-weight: 600; }
+  .milestone-name { font-weight: 600; font-size: 14px; }
+  .milestone-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ACTIVITY */
+  .activity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 700px) { .activity-grid { grid-template-columns: 1fr; } }
+  .activity-list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .activity-item { display: flex; align-items: center; gap: 14px; padding: 13px 18px; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .activity-item:last-child { border-bottom: none; }
+  .activity-item:hover { background: var(--surface-2); }
+  .activity-date { font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; min-width: 76px; }
+  .activity-title { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .activity-empty { padding: 20px; text-align: center; color: var(--text-muted); font-size: 13px; }
+
+  /* SECTIONS GRID */
+  .section-card { display: flex; flex-direction: column; gap: 8px; padding: 22px; }
+  .section-card .icon { width: 22px; height: 22px; color: var(--accent); margin-bottom: 4px; }
+  .section-card .name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .section-card .desc { font-size: 13px; color: var(--text-muted); }
+
+  /* ERRORS */
+  .error-note { background: var(--surface-2); border: 1px dashed var(--border-strong); border-radius: var(--radius); padding: 16px 20px; color: var(--text-muted); font-size: 13px; }
+
+  /* FOOTER */
+  .foot { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); text-align: center; }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <div class="sample-banner" id="sample-banner" hidden>🧪&nbsp;<span><strong>Sample project.</strong> This dashboard shows demo data. Say <strong>“set me up”</strong> (or run <code>/onboard</code>) to replace it with your project.</span></div>
+
+  <div class="brand-bar">
+    <span class="brand">
+      <img class="brand-mark" id="brand-logo" alt="" src="./assets/logo.svg" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brand-mark',style:'background:var(--accent)'}))" />
+      <span class="brand-name">Project OS</span>
+    </span>
+  </div>
+
+  <header class="hero">
+    <div class="hero-left">
+      <div class="client" id="client">…</div>
+      <h1 class="project" id="project">Project Overview</h1>
+      <p class="description" id="description"></p>
+    </div>
+    <div class="hero-right">
+      <span class="pill" id="status-pill"><span class="pill-dot"></span><span id="status-text">—</span></span>
+      <div class="day-counter">
+        <div class="day-counter-num" id="day-num">—</div>
+        <div class="day-counter-label" id="day-label">of the project</div>
+      </div>
+      <div class="updated" id="updated"></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <h2 class="section-title">Timeline</h2>
+      <a class="section-link" href="./admin/timeline.md">Open timeline →</a>
+    </div>
+    <div class="timeline-wrap">
+      <div class="timeline-bar" id="timeline-bar"></div>
+      <div class="timeline-legend"><span id="timeline-start">—</span><span id="timeline-end">—</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="section-title">Goals</h2>
+      <a class="section-link" href="./context/goals.md">Open goals →</a>
+    </div>
+    <div class="grid cols-3" id="goals"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="section-title">People</h2>
+      <a class="section-link" href="./context/stakeholders.md">Open stakeholders →</a>
+    </div>
+    <div id="stakeholders"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="section-title">Milestones</h2>
+      <a class="section-link" href="./deliverables/milestones.md">Open milestones →</a>
+    </div>
+    <div class="milestone-list" id="milestones"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="section-title">Recent activity</h2>
+    </div>
+    <div class="activity-grid">
+      <div>
+        <div class="side-label">Meetings</div>
+        <div class="activity-list" id="meetings"></div>
+      </div>
+      <div>
+        <div class="side-label">Decisions</div>
+        <div class="activity-list" id="decisions"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="section-title">Sections</h2>
+    </div>
+    <div class="grid cols-4">
+      <a class="card section-card" href="./context/">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <div class="name">Context</div>
+        <div class="desc">Brief, stakeholders, goals, glossary</div>
+      </a>
+      <a class="card section-card" href="./meetings/">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div class="name">Meetings</div>
+        <div class="desc">One file per meeting</div>
+      </a>
+      <a class="card section-card" href="./decisions/">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="name">Decisions</div>
+        <div class="desc">Why we chose what we chose</div>
+      </a>
+      <a class="card section-card" href="./research/">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="name">Research</div>
+        <div class="desc">User research, interviews, synthesis</div>
+      </a>
+      <a class="card section-card" href="./design/">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+        <div class="name">Design</div>
+        <div class="desc">Rationale and Figma links</div>
+      </a>
+      <a class="card section-card" href="./team/">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="name">Team</div>
+        <div class="desc">Ways of working, onboarding</div>
+      </a>
+      <a class="card section-card" href="./deliverables/">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <div class="name">Deliverables</div>
+        <div class="desc">Milestones and shipped work</div>
+      </a>
+      <a class="card section-card" href="./admin/">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <div class="name">Admin</div>
+        <div class="desc">Scope, timeline, contracts</div>
+      </a>
+    </div>
+  </section>
+
+  <div class="foot">Edit the markdown files in this workspace to update this overview.</div>
+</main>
+
+<!-- Snapshot of the frontmatter data, used when the viewer cannot read the
+     markdown files (e.g. Palette Desktop's single-file preview). Regenerate
+     whenever frontmatter changes in context/project.md, admin/timeline.md,
+     deliverables/milestones.md, context/stakeholders.md, or context/goals.md
+     — see AGENTS.md → "The dashboard". Ships with the sample project; /onboard replaces it. -->
+<script id="data-snapshot" type="application/json">
+{"meta":{"sample":true,"client":"Acme Co.","project":"Customer Portal Rebuild","phase":"build","kickoff":"2026-06-02","end":"2026-09-30","ourLead":"Sam Rivera","clientLead":"Jordan Lee","description":"Rebuilding Acme's customer portal — faster, self-serve, and mobile-first.","recentMeetings":["2026-06-04-kickoff.md"],"recentDecisions":["0001-rebuild-not-refit.md"]},"timeline":{"phases":[{"name":"Discovery","start":"2026-06-02","end":"2026-06-20"},{"name":"Build","start":"2026-06-22","end":"2026-08-28"},{"name":"Launch & handover","start":"2026-08-31","end":"2026-09-30"}]},"milestones":{"milestones":[{"name":"Kickoff","due":"2026-06-04","status":"done","description":"Roles, goals, and plan aligned with the client."},{"name":"Discovery complete","due":"2026-06-20","status":"done","description":"Scope, technical approach, and success metrics agreed."},{"name":"Portal MVP","due":"2026-07-31","status":"in-progress","description":"Core portal usable end to end on a test environment."},{"name":"Feature complete","due":"2026-08-28","status":"planned","description":"Checkout, self-serve help, and data migration done."},{"name":"Go-live","due":"2026-09-15","status":"planned","description":"Cutover to the new portal with 301 redirects."},{"name":"Handover","due":"2026-09-30","status":"planned","description":"Client team trained; support model in place."}]},"stakeholders":{"stakeholders":[{"name":"Jordan Lee","role":"Product Owner","side":"client","initials":"JL"},{"name":"Priya Nair","role":"Support Lead (SME)","side":"client","initials":"PN"},{"name":"Sam Rivera","role":"Project Lead","side":"team","initials":"SR"},{"name":"Alex Chen","role":"Lead Engineer","side":"team","initials":"AC"},{"name":"Robin Fox","role":"Design / UX","side":"team","initials":"RF"},{"name":"Morgan Diaz","role":"Security Advisor","side":"external","initials":"MD"}]},"goals":{"outcomes":[{"title":"Cut checkout drop-off","metric":"Checkout completion rate","baseline":"62%","target":"80%+"},{"title":"Self-serve support","metric":"Common issues resolved without a ticket","baseline":"0%","target":"40% deflected"},{"title":"Fast on mobile","metric":"Mobile page load (p75)","baseline":"4.1s","target":"under 2s"}]},"generated":"2026-06-20"}
+</script>
+
+<script>
+const FILES = {
+  meta: 'context/project.md',
+  timeline: 'admin/timeline.md',
+  milestones: 'deliverables/milestones.md',
+  stakeholders: 'context/stakeholders.md',
+  goals: 'context/goals.md',
+};
+
+// Minimal YAML parser used when the js-yaml CDN script is unavailable
+// (offline, or blocked by a desktop webview). Supports the subset used by
+// this workspace's frontmatter: maps, lists of maps, lists of scalars,
+// quoted strings, and comments.
+function miniYaml(text) {
+  const src = text.split(/\r?\n/);
+  // Each entry is [indent, text, resolvedValue?]. A resolvedValue is present only
+  // for block scalars, whose body was already consumed verbatim below.
+  const lines = [];
+  for (let i = 0; i < src.length; i++) {
+    const raw = src[i];
+    if (!raw.trim() || /^\s*#/.test(raw)) continue;
+    const indent = raw.match(/^ */)[0].length;
+    const trimmed = raw.trim();
+
+    // Block scalars (`key: |`, `key: >-`, …). Without this the indented body would
+    // be misread as structure — a multi-line description would corrupt the parse.
+    const bs = trimmed.match(/^([^:#]+):\s*([|>])[-+]?\s*$/);
+    if (bs) {
+      const body = [];
+      let bodyIndent = null, j = i + 1;
+      for (; j < src.length; j++) {
+        if (!src[j].trim()) { body.push(''); continue; }
+        const ind = src[j].match(/^ */)[0].length;
+        if (ind <= indent) break;
+        if (bodyIndent === null) bodyIndent = ind;
+        body.push(src[j].slice(bodyIndent));
+      }
+      while (body.length && body[body.length - 1] === '') body.pop();
+      // `|` keeps line breaks; `>` folds each paragraph onto one line. Chomping
+      // indicators are consumed but ignored — these values feed a dashboard, not
+      // a byte-exact YAML round-trip.
+      const value = bs[2] === '|'
+        ? body.join('\n')
+        : body.join('\n').split(/\n{2,}/).map(p => p.split('\n').join(' ').trim()).join('\n');
+      lines.push([indent, bs[1].trim() + ':', value]);
+      i = j - 1;
+      continue;
+    }
+
+    lines.push([indent, trimmed]);
+  }
+  let pos = 0;
+  function parseVal(v) {
+    v = v.trim();
+    if (v[0] === '"' || v[0] === "'") {
+      const e = v.lastIndexOf(v[0]);
+      return e > 0 ? v.slice(1, e) : v.slice(1);
+    }
+    const h = v.search(/\s#/);
+    if (h >= 0) v = v.slice(0, h).trim();
+    if (v === 'true') return true;
+    if (v === 'false') return false;
+    if (v === 'null' || v === '~' || v === '') return null;
+    // Only coerce plain YAML numbers. Leading zeros ("0001", "007") stay strings,
+    // as YAML itself treats them — decision numbers must not become 1.
+    if (/^-?(0|[1-9]\d*)(\.\d+)?([eE][-+]?\d+)?$/.test(v)) return Number(v);
+    return v;
+  }
+  function block(minIndent) {
+    if (pos >= lines.length || lines[pos][0] < minIndent) return null;
+    const indent = lines[pos][0];
+    let out = null;
+    while (pos < lines.length) {
+      const [ind, txt] = lines[pos];
+      if (ind < indent) break;
+      if (ind > indent) { pos++; continue; }
+      if (txt === '-' || txt.startsWith('- ')) {
+        if (out && !Array.isArray(out)) break;
+        out = out || [];
+        const rest = txt.slice(1).trim();
+        if (!rest) { pos++; out.push(block(indent + 1)); continue; }
+        if (/^[^:\s]+:(\s|$)/.test(rest)) {
+          lines[pos] = [indent + 2, rest];
+          out.push(block(indent + 2));
+        } else {
+          out.push(parseVal(rest));
+          pos++;
+        }
+        continue;
+      }
+      const m = txt.match(/^([^:]+):(.*)$/);
+      if (!m) { pos++; continue; }
+      if (out && Array.isArray(out)) break;
+      out = out || {};
+      const resolved = lines[pos][2];
+      pos++;
+      if (resolved !== undefined) { out[m[1].trim()] = resolved; continue; }
+      const val = m[2].trim();
+      out[m[1].trim()] = val ? parseVal(val) : block(indent + 1);
+    }
+    return out;
+  }
+  return block(0);
+}
+
+function parseYamlText(src) {
+  if (typeof jsyaml !== 'undefined') return jsyaml.load(src);
+  return miniYaml(src);
+}
+
+const loadErrors = [];
+
+function xhrGet(path) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', path);
+    xhr.onload = () => {
+      if (xhr.status === 200 || (xhr.status === 0 && xhr.responseText)) resolve(xhr.responseText);
+      else reject(new Error('XHR status ' + xhr.status));
+    };
+    xhr.onerror = () => reject(new Error('XHR network error'));
+    xhr.send();
+  });
+}
+
+async function readFileText(path) {
+  try {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.text();
+  } catch (fetchErr) {
+    try {
+      return await xhrGet(path);
+    } catch (xhrErr) {
+      throw new Error('fetch: ' + (fetchErr.message || fetchErr) + ' / ' + (xhrErr.message || xhrErr));
+    }
+  }
+}
+
+async function loadYaml(path) {
+  try {
+    const text = await readFileText(path);
+    const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (!m) { loadErrors.push(path + ': no frontmatter block found'); return null; }
+    return parseYamlText(m[1]);
+  } catch (e) {
+    loadErrors.push(path + ': ' + (e.message || e));
+    console.warn('Could not load', path, e);
+    return null;
+  }
+}
+
+// All frontmatter dates are plain YYYY-MM-DD calendar days. `new Date('2026-06-02')`
+// parses those as UTC midnight, which lands on the previous day west of UTC and
+// skews every comparison against a local "today". Parse them as local midnight so
+// the day counter, the active-phase highlight, the today-line, and past-due state
+// all sit on the same boundary.
+function parseDate(d) {
+  if (d instanceof Date) return d;
+  if (d == null) return new Date(NaN);
+  const m = String(d).trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) {
+    const y = Number(m[1]), mo = Number(m[2]) - 1, day = Number(m[3]);
+    const date = new Date(y, mo, day);
+    // The Date constructor rolls overflow forward (2026-02-30 → Mar 2), which would
+    // silently place a milestone on the wrong day. Reject rather than normalize.
+    if (date.getFullYear() !== y || date.getMonth() !== mo || date.getDate() !== day) return new Date(NaN);
+    return date;
+  }
+  return new Date(d);
+}
+
+// Local midnight — the single boundary every date comparison below uses.
+function startOfToday() {
+  const t = new Date();
+  t.setHours(0, 0, 0, 0);
+  return t;
+}
+
+function escapeHtml(v) {
+  if (v == null) return '';
+  return String(v)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function fmtDate(d) {
+  if (!d) return '';
+  const date = parseDate(d);
+  if (isNaN(date)) return String(d);
+  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function fmtShortDate(d) {
+  if (!d) return '';
+  const date = parseDate(d);
+  if (isNaN(date)) return String(d);
+  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+
+function avatarColor(seed) {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  return `hsl(${h % 360}, 55%, 60%)`;
+}
+
+function setText(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
+
+function renderHero(meta) {
+  if (!meta) {
+    setText('client', '—');
+    const detail = loadErrors.length ? ' [' + loadErrors.join(' | ') + ' | url: ' + location.href.slice(0, 120) + ']' : '';
+    setText('description', 'Could not read context/project.md frontmatter. Open this folder in Palette Desktop, or serve it locally to view the dashboard.' + detail);
+    return;
+  }
+  setText('client', meta.client || '—');
+  if (meta.project) setText('project', meta.project);
+  setText('description', meta.description || '');
+
+  const status = (meta.phase || meta.status || 'discovery').toString().toLowerCase();
+  const pill = document.getElementById('status-pill');
+  // classList.add throws on empty or whitespace-bearing tokens, which would abort
+  // the whole render — reduce a free-text phase to a single safe class token.
+  const statusClass = status.trim().replace(/\s+/g, '-').replace(/[^a-z0-9_-]/g, '');
+  if (statusClass) pill.classList.add(statusClass);
+  setText('status-text', status);
+
+  // Day X of Y
+  const kickoff = meta.kickoff ? parseDate(meta.kickoff) : null;
+  const end = meta.end ? parseDate(meta.end) : null;
+  if (kickoff && end && !isNaN(kickoff) && !isNaN(end)) {
+    const today = startOfToday();
+    const total = Math.max(1, Math.round((end - kickoff) / 86400000));
+    const elapsed = Math.max(0, Math.min(total, Math.round((today - kickoff) / 86400000)));
+    setText('day-num', `Day ${elapsed} of ${total}`);
+    setText('day-label', `${fmtDate(kickoff)} → ${fmtDate(end)}`);
+  }
+  setText('updated', 'Updated ' + fmtDate(new Date()));
+}
+
+function renderTimeline(data, meta) {
+  const bar = document.getElementById('timeline-bar');
+  bar.innerHTML = '';
+  if (!data || !Array.isArray(data.phases) || data.phases.length === 0) {
+    bar.parentElement.innerHTML = '<div class="error-note">No phases yet. Add a <code>phases</code> block to <a href="./admin/timeline.md">admin/timeline.md</a>.</div>';
+    return;
+  }
+  const phases = data.phases.map(p => ({
+    name: p.name,
+    start: parseDate(p.start),
+    end: parseDate(p.end),
+  })).filter(p => !isNaN(p.start) && !isNaN(p.end));
+  if (!phases.length) {
+    bar.parentElement.innerHTML = '<div class="error-note">No valid phase dates yet. Fill in the <code>phases</code> block in <a href="./admin/timeline.md">admin/timeline.md</a>.</div>';
+    return;
+  }
+
+  const totalStart = phases[0].start;
+  const totalEnd = phases[phases.length - 1].end;
+  const totalMs = totalEnd - totalStart;
+  const today = startOfToday();
+
+  phases.forEach(p => {
+    const leftPct = ((p.start - totalStart) / totalMs) * 100;
+    const widthPct = ((p.end - p.start) / totalMs) * 100;
+    const div = document.createElement('div');
+    div.className = 'phase';
+    if (today >= p.start && today <= p.end) div.classList.add('active');
+    else if (today > p.end) div.classList.add('past');
+    div.style.left = leftPct + '%';
+    div.style.width = widthPct + '%';
+    div.innerHTML = `<div class="phase-name">${escapeHtml(p.name)}</div><div class="phase-dates">${escapeHtml(fmtShortDate(p.start))} – ${escapeHtml(fmtShortDate(p.end))}</div>`;
+    bar.appendChild(div);
+  });
+
+  if (today >= totalStart && today <= totalEnd) {
+    const pct = ((today - totalStart) / totalMs) * 100;
+    const line = document.createElement('div');
+    line.className = 'today-line';
+    line.style.left = pct + '%';
+    bar.appendChild(line);
+    const label = document.createElement('div');
+    label.className = 'today-label';
+    label.style.left = pct + '%';
+    label.textContent = 'Today';
+    bar.appendChild(label);
+  }
+
+  setText('timeline-start', fmtDate(totalStart));
+  setText('timeline-end', fmtDate(totalEnd));
+}
+
+function renderGoals(data) {
+  const root = document.getElementById('goals');
+  root.innerHTML = '';
+  if (!data || !Array.isArray(data.outcomes) || data.outcomes.length === 0) {
+    root.innerHTML = '<div class="error-note">No outcomes yet. Add an <code>outcomes</code> block to <a href="./context/goals.md">context/goals.md</a>.</div>';
+    return;
+  }
+  data.outcomes.forEach(o => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="goal-title">${escapeHtml(o.title)}</div>
+      <div class="goal-metric">${escapeHtml(o.metric)}</div>
+      <div class="goal-flow">
+        <span class="goal-baseline">${escapeHtml(o.baseline)}</span>
+        <span class="goal-arrow">→</span>
+        <span class="goal-target">${escapeHtml(o.target)}</span>
+      </div>`;
+    root.appendChild(card);
+  });
+}
+
+function renderStakeholders(data) {
+  const root = document.getElementById('stakeholders');
+  root.innerHTML = '';
+  if (!data || !Array.isArray(data.stakeholders) || data.stakeholders.length === 0) {
+    root.innerHTML = '<div class="error-note">No stakeholders yet. Add a <code>stakeholders</code> block to <a href="./context/stakeholders.md">context/stakeholders.md</a>.</div>';
+    return;
+  }
+  const groups = { team: [], client: [], external: [] };
+  data.stakeholders.forEach(s => {
+    const side = (s.side || 'external').toLowerCase();
+    (groups[side] || groups.external).push(s);
+  });
+  const labels = { client: 'Client', team: 'Team', external: 'External' };
+  ['client', 'team', 'external'].forEach(key => {
+    if (!groups[key].length) return;
+    const group = document.createElement('div');
+    group.className = 'side-group';
+    group.innerHTML = `<div class="side-label">${labels[key]}</div>`;
+    const grid = document.createElement('div');
+    grid.className = 'grid cols-3';
+    groups[key].forEach(s => {
+      const initials = String(s.initials || (s.name || '?').split(/\s+/).map(w => w[0]).slice(0,2).join('')).toUpperCase();
+      const a = document.createElement('a');
+      a.className = 'card person-card';
+      a.href = './context/stakeholders.md';
+      a.innerHTML = `
+        <div class="avatar" style="background:${escapeHtml(avatarColor(initials))}">${escapeHtml(initials)}</div>
+        <div>
+          <div class="person-name">${escapeHtml(s.name)}</div>
+          <div class="person-role">${escapeHtml(s.role)}</div>
+        </div>`;
+      grid.appendChild(a);
+    });
+    group.appendChild(grid);
+    root.appendChild(group);
+  });
+}
+
+function renderMilestones(data) {
+  const root = document.getElementById('milestones');
+  root.innerHTML = '';
+  if (!data || !Array.isArray(data.milestones) || data.milestones.length === 0) {
+    root.outerHTML = '<div class="error-note">No milestones yet. Add a <code>milestones</code> block to <a href="./deliverables/milestones.md">deliverables/milestones.md</a>.</div>';
+    return;
+  }
+  const today = startOfToday();
+  const sorted = [...data.milestones].sort((a, b) => parseDate(a.due) - parseDate(b.due));
+  sorted.forEach(m => {
+    const due = parseDate(m.due);
+    const status = String(m.status || 'planned').toLowerCase();
+    const pastDue = !isNaN(due) && due < today && status !== 'done';
+    const row = document.createElement('div');
+    row.className = 'milestone-row';
+    row.innerHTML = `
+      <div class="milestone-date${pastDue ? ' past-due' : ''}">${escapeHtml(fmtDate(due))}</div>
+      <div>
+        <div class="milestone-name">${escapeHtml(m.name)}</div>
+        ${m.description ? `<div class="milestone-desc">${escapeHtml(m.description)}</div>` : ''}
+      </div>
+      <span class="pill ${escapeHtml(status)}"><span class="pill-dot"></span>${escapeHtml(status.replace('-', ' '))}</span>`;
+    root.appendChild(row);
+  });
+}
+
+function meetingTitleFromFilename(f) {
+  // 2026-01-01-kickoff.md → { date: "Jan 1", title: "Kickoff" }
+  const m = f.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/);
+  if (!m) return { date: '', title: f };
+  const d = parseDate(`${m[1]}-${m[2]}-${m[3]}`);
+  const title = m[4].replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  return { date: fmtShortDate(d), title };
+}
+
+function decisionTitleFromFilename(f) {
+  // 0001-use-postgres.md → { date: "#0001", title: "Use Postgres" }
+  const m = f.match(/^(\d+)-(.+)\.md$/);
+  if (!m) return { date: '', title: f };
+  const title = m[2].replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  return { date: '#' + m[1], title };
+}
+
+function renderActivityList(rootId, files, folder, fn) {
+  const root = document.getElementById(rootId);
+  root.innerHTML = '';
+  if (!files || !files.length) {
+    root.innerHTML = '<div class="activity-empty">Nothing yet.</div>';
+    return;
+  }
+  files.forEach(f => {
+    const { date, title } = fn(String(f));
+    const a = document.createElement('a');
+    a.className = 'activity-item';
+    a.href = `./${folder}/${encodeURIComponent(String(f))}`;
+    a.innerHTML = `<div class="activity-date">${escapeHtml(date)}</div><div class="activity-title">${escapeHtml(title)}</div>`;
+    root.appendChild(a);
+  });
+}
+
+async function main() {
+  const entries = await Promise.all(Object.entries(FILES).map(async ([k, p]) => [k, await loadYaml(p)]));
+  const data = Object.fromEntries(entries);
+
+  // Fall back to the embedded snapshot for anything the viewer couldn't read
+  // (single-file previews like Palette Desktop block reads of sibling files).
+  let snapshotDate = null;
+  const snapEl = document.getElementById('data-snapshot');
+  if (snapEl) {
+    try {
+      const snap = JSON.parse(snapEl.textContent);
+      for (const k of Object.keys(FILES)) {
+        if (!data[k] && snap[k]) {
+          data[k] = snap[k];
+          snapshotDate = snap.generated || 'unknown date';
+        }
+      }
+    } catch (e) {
+      console.warn('Bad data-snapshot JSON', e);
+    }
+  }
+
+  const m = data.meta || {};
+  if (m.sample === true || m.sample === 'true') {
+    const banner = document.getElementById('sample-banner');
+    if (banner) banner.hidden = false;
+  }
+
+  renderHero(data.meta);
+  renderTimeline(data.timeline, data.meta);
+  renderGoals(data.goals);
+  renderStakeholders(data.stakeholders);
+  renderMilestones(data.milestones);
+
+  renderActivityList('meetings', data.meta?.recentMeetings, 'meetings', meetingTitleFromFilename);
+  renderActivityList('decisions', data.meta?.recentDecisions, 'decisions', decisionTitleFromFilename);
+
+  if (snapshotDate) {
+    setText('updated', 'Snapshot from ' + snapshotDate + ' (live file reads unavailable in this viewer)');
+  }
+}
+
+main();
+</script>
+</body>
+</html>
