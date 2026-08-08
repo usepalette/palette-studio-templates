@@ -330,10 +330,42 @@ const FILES = {
 // this workspace's frontmatter: maps, lists of maps, lists of scalars,
 // quoted strings, and comments.
 function miniYaml(text) {
+  const src = text.split(/\r?\n/);
+  // Each entry is [indent, text, resolvedValue?]. A resolvedValue is present only
+  // for block scalars, whose body was already consumed verbatim below.
   const lines = [];
-  for (const raw of text.split(/\r?\n/)) {
+  for (let i = 0; i < src.length; i++) {
+    const raw = src[i];
     if (!raw.trim() || /^\s*#/.test(raw)) continue;
-    lines.push([raw.match(/^ */)[0].length, raw.trim()]);
+    const indent = raw.match(/^ */)[0].length;
+    const trimmed = raw.trim();
+
+    // Block scalars (`key: |`, `key: >-`, …). Without this the indented body would
+    // be misread as structure — a multi-line description would corrupt the parse.
+    const bs = trimmed.match(/^([^:#]+):\s*([|>])[-+]?\s*$/);
+    if (bs) {
+      const body = [];
+      let bodyIndent = null, j = i + 1;
+      for (; j < src.length; j++) {
+        if (!src[j].trim()) { body.push(''); continue; }
+        const ind = src[j].match(/^ */)[0].length;
+        if (ind <= indent) break;
+        if (bodyIndent === null) bodyIndent = ind;
+        body.push(src[j].slice(bodyIndent));
+      }
+      while (body.length && body[body.length - 1] === '') body.pop();
+      // `|` keeps line breaks; `>` folds each paragraph onto one line. Chomping
+      // indicators are consumed but ignored — these values feed a dashboard, not
+      // a byte-exact YAML round-trip.
+      const value = bs[2] === '|'
+        ? body.join('\n')
+        : body.join('\n').split(/\n{2,}/).map(p => p.split('\n').join(' ').trim()).join('\n');
+      lines.push([indent, bs[1].trim() + ':', value]);
+      i = j - 1;
+      continue;
+    }
+
+    lines.push([indent, trimmed]);
   }
   let pos = 0;
   function parseVal(v) {
@@ -378,7 +410,9 @@ function miniYaml(text) {
       if (!m) { pos++; continue; }
       if (out && Array.isArray(out)) break;
       out = out || {};
+      const resolved = lines[pos][2];
       pos++;
+      if (resolved !== undefined) { out[m[1].trim()] = resolved; continue; }
       const val = m[2].trim();
       out[m[1].trim()] = val ? parseVal(val) : block(indent + 1);
     }
@@ -443,7 +477,14 @@ function parseDate(d) {
   if (d instanceof Date) return d;
   if (d == null) return new Date(NaN);
   const m = String(d).trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  if (m) {
+    const y = Number(m[1]), mo = Number(m[2]) - 1, day = Number(m[3]);
+    const date = new Date(y, mo, day);
+    // The Date constructor rolls overflow forward (2026-02-30 → Mar 2), which would
+    // silently place a milestone on the wrong day. Reject rather than normalize.
+    if (date.getFullYear() !== y || date.getMonth() !== mo || date.getDate() !== day) return new Date(NaN);
+    return date;
+  }
   return new Date(d);
 }
 

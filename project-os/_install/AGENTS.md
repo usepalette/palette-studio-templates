@@ -83,6 +83,8 @@ The five source files:
 
 **After editing frontmatter in any of the five, regenerate the embedded snapshot** so single-file viewers stay correct: parse each file's frontmatter to JSON, build an object with keys `meta`, `timeline`, `milestones`, `stakeholders`, `goals`, and `generated` (today's date), and replace the JSON inside the `<script id="data-snapshot" type="application/json">` block near the bottom of `overview.html` (single line, valid JSON). Keep `sample: true` in `meta` only while the shipped sample project is in place — drop it once real content is in (that also hides the dashboard's "Sample project" banner). Never hand-edit anything else in `overview.html`.
 
+*Scope:* that rule governs **this workspace**, where `overview.html` is a delivered artifact and the markdown is the source. The dashboard itself — its markup, styles, and rendering code — is maintained upstream in the Project OS template repo, which is the only place it's edited. There is no separate generator to run: `data-snapshot` is the one region regenerated here, by hand or by an agent.
+
 ## Behavior
 
 These apply everywhere in the OS:
