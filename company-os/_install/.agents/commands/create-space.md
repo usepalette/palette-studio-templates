@@ -84,7 +84,7 @@ Copy the shape from the root `lessons.md` / `log.md` (header + convention note),
 
 ### 4. Only if the space needs its own `AGENTS.md`
 
-If step 5 of Inputs said yes, create `<slug>/AGENTS.md` — **no frontmatter**, opening `# {slug}`, a line linking the root `../AGENTS.md` ("company-wide rules live there; this layers on top; root always applies"), then the local behavioral rules and a nav table. Keep it lean and behavioral — routine placement belongs in the README.
+If step 5 of Inputs said yes, create `<slug>/AGENTS.md` — minimal frontmatter (`type: doc` only; it's a behavior file, not a tracked document), then `# {slug}`, a line linking the root `../AGENTS.md` ("company-wide rules live there; this layers on top; root always applies"), then the local behavioral rules and a nav table. Keep it lean and behavioral — routine placement belongs in the README.
 
 Then create the three thin vendor pointers so every host loads the local rules. Use this exact adapter text (swap the header per agent):
 
@@ -98,7 +98,7 @@ Read and follow `AGENTS.md` in this folder.
 Do not duplicate shared instructions here.
 ```
 
-Create `<slug>/CLAUDE.md` and `<slug>/GEMINI.md` (Codex reads `AGENTS.md` directly; Mistral's Vibe agent loads the root `.vibe/AGENTS.md`, so spaces don't get their own pointer). Never symlink; some file-sync layers break them.
+Create `<slug>/CLAUDE.md` and `<slug>/GEMINI.md`, each with minimal `type: doc` frontmatter like the space's `AGENTS.md` (Codex reads `AGENTS.md` directly; Mistral's Vibe agent loads the root `.vibe/AGENTS.md`, so spaces don't get their own pointer). Never symlink; some file-sync layers break them.
 
 ### 5. Register the space
 

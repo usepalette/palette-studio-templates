@@ -166,10 +166,10 @@ documents use the full shape:
 ```yaml
 ---
 type: index
-owner: [Responsible owner]
+owner: "[Responsible owner]"
 status: active
 last_updated: YYYY-MM-DD
-last_updated_by: [Current human]
+last_updated_by: "[Current human]"
 edit_policy: team
 ---
 ```

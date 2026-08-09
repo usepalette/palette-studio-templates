@@ -1,6 +1,10 @@
 ---
 type: index
+owner: "[Owner]"
 status: draft
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
 ---
 
 # GTM OS
@@ -85,10 +89,10 @@ Everything above is the **template landing page**. During `/onboard`, **replace 
 ```markdown
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: active
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: everyone
 ---
 

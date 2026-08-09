@@ -1,6 +1,10 @@
 ---
 type: index
+owner: "[Owner]"
 status: draft
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
 ---
 
 # Company OS Template
@@ -180,10 +184,10 @@ During `/onboard` (or your first cleanup), **replace all of it with the short ro
 ```markdown
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: active
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: open
 ---
 

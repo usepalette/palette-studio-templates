@@ -1,3 +1,7 @@
+---
+type: doc
+---
+
 # product
 
 Company-wide rules — behavior, conventions, how the OS fits together — live in the root [`../AGENTS.md`](../AGENTS.md). This file adds the product-specific rules that layer on top. Root always applies; when they seem to conflict, root wins on company-wide matters, this file wins on product-specific ones.

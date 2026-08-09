@@ -1,3 +1,7 @@
+---
+type: doc
+---
+
 # ops — operating posture
 
 `ops/` is [Company]'s operations space (finance, investors, legal, admin, hiring) inside [the company OS](../AGENTS.md). Company-wide rules live in the root `../AGENTS.md`; `README.md` is the map of what's here. **This file is the mindset for working in ops — read it before touching anything here.**

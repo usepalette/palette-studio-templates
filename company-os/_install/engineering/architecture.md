@@ -32,7 +32,7 @@ The cross-repo system map — the big pieces and how they fit. Keep it high-leve
 
 [The 2–4 architectural decisions that shape everything else, and *why* — link the ADR in `decisions/` for each.]
 
-- **[Choice]** — [why] → `decisions/<slug>.md`
+- **[Choice]** — [why] → `decisions/YYYY-MM-DD-<slug>.md`
 
 ## Boundaries & invariants
 

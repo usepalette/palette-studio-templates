@@ -6,13 +6,25 @@ argument-hint: "[fix|report]"
 
 # Workspace Heal
 
-Structural health check for this GTM OS workspace. Finds broken internal links, stale README listings, orphaned files, index/board drift, adapter drift, and missing frontmatter — across the root and every folder (`foundations/`, `work/`, `accounts/`, `playbooks/`, `templates/`, `team/`, `log/`). Run with `fix` to auto-repair, or `report` to just list issues.
+Structural health check for this GTM OS workspace. Finds broken internal links, stale README listings, orphaned files, index/board drift, adapter drift, and missing frontmatter — across the root and every folder (`foundations/`, `work/`, `accounts/`, `playbooks/`, `templates/`, `team/`, `log/`). Run with `report` to just list issues, or `fix` to repair them.
 
 Default: `report` (no changes made).
 
+**What `fix` means:** propose the changes, then apply the ones the user confirms — it is not blanket
+write access. Two tiers:
+
+- **Applied automatically:** deterministic, reversible edits where the correct result is
+  unambiguous — repointing a broken link to its resolved target, correcting a README listing to
+  match what is on disk, copying canonical frontmatter verbatim into an adapter.
+- **Always confirmed first:** anything driven by a heuristic or that loses information — moving a
+  file, creating or rewriting an adapter, or any deletion. Show the exact `from → to` (or the file
+  and body you'd write) and wait for a yes.
+
+Never create stub files, and never invent content to satisfy a check.
+
 ## Trigger
 
-User runs `/workspace-heal` (report only) or `/workspace-heal fix` (report + fix).
+User runs `/workspace-heal` (report only) or `/workspace-heal fix` (report + apply, per the two tiers above).
 
 ## Checks
 
@@ -85,7 +97,7 @@ Every content `.md` should carry frontmatter with a `type` (root `AGENTS.md` →
 
 This OS started from a template. Scan for un-filled `[bracket placeholders]` (e.g. `[Company]`, `[Company Name]`, `[Owner]`), literal `YYYY-MM-DD` in a `last_updated`/`last_updated_by` field, and `# [Company] GTM OS` in the root README.
 
-**Exclude:** `_template/` folders (their placeholders are intentional) and prose that *names* a placeholder as an instruction (e.g. "run `/onboard` to replace `[Company]`").
+**Exclude:** `_template/` folders and everything under `templates/` (both are reusable scaffolding — their `[Owner]` and `YYYY-MM-DD` placeholders are the point, not unfinished setup), any file whose own name starts with `_template`, and prose that *names* a placeholder as an instruction (e.g. "run `/onboard` to replace `[Company]`").
 
 **Report:** each file still carrying template placeholders — usually means `/onboard` hasn't finished, or a folder was hand-copied instead of scaffolded with `/new-account` / `/new-person`. **Fix:** flag for review, suggest `/onboard` (if broad) or filling the specific fields. Never invent values.
 

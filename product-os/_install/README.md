@@ -1,6 +1,10 @@
 ---
 type: index
+owner: "[Owner]"
 status: draft
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
 ---
 
 # Product OS
@@ -107,10 +111,10 @@ placeholders.
 ```markdown
 ---
 type: index
-owner: [Workspace steward]
+owner: "[Workspace steward]"
 status: active
 last_updated: YYYY-MM-DD
-last_updated_by: [Setup author]
+last_updated_by: "[Setup author]"
 edit_policy: team
 ---
 

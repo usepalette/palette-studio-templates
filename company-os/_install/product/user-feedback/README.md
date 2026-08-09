@@ -45,6 +45,8 @@ sentiment: "[positive | neutral | negative | mixed]"
 
 ## Conventions
 
-- Filenames: `YYYY-MM-DD_company_person_topic.md` (lowercase, hyphens in the topic)
+- Filenames: `YYYY-MM-DD_company_person_topic.md` — underscores separate the *fields*, each field is
+  lowercase kebab-case (`2026-03-04_acme-corp_alex-rivera_slow-search.md`)
 - Dates always absolute, never relative
-- File and folder names in kebab-case
+- Everywhere else, file and folder names are plain kebab-case — the underscore field separator is
+  specific to these dated leaf files

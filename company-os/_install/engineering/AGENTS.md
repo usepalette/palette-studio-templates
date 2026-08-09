@@ -1,3 +1,7 @@
+---
+type: doc
+---
+
 # engineering — how to work here
 
 Company-wide rules live in the root [`../AGENTS.md`](../AGENTS.md); this file adds the engineering-specific posture. Read the [`README.md`](README.md) first (structure + the **What lives elsewhere** table + **surface ownership**), then work the way below.

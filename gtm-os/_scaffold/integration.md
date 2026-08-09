@@ -22,8 +22,8 @@ are in place, waiting to be filled with the user's real company. There is no sam
 3. After `/onboard` finishes, give a quick summary:
    - What you filled in (`foundations/`, brand voice) and who was added to `team/`.
    - The commands they'll use next: `/new-account` (a customer), `/new-person` (a teammate),
-     `/review` (check work against brand + hygiene), and the weekly `/finish-session` +
-     `/workspace-heal`.
+     `/review` (check work against brand + hygiene), `/finish-session` after any meaningful work
+     session, and `/workspace-heal` weekly.
 
 ## Notes
 
