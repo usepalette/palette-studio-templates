@@ -34,6 +34,15 @@ Capture what the session produced in the project's two memory files (root `AGENT
 For a meaningful session, also write a fuller recap as `YYYY-MM-DD-<slug>.md` in a sensible spot (a `log/` folder if the project keeps one, otherwise alongside the work). If a slug argument was provided (Claude passes it as `$ARGUMENTS`), use it; otherwise pick a short kebab-case slug. Otherwise the `log.md` line is enough — don't force a recap file.
 
 ```markdown
+---
+type: meeting
+owner: "[Owner]"
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: team
+---
+
 # <Title> — YYYY-MM-DD
 
 ## Summary

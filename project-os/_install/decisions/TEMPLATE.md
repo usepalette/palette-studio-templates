@@ -3,7 +3,7 @@ type: decision
 date: YYYY-MM-DD
 status: proposed   # proposed | accepted | superseded by NNNN
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 ---
 
 # NNNN — _Short title_

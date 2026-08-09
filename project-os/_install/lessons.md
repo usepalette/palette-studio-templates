@@ -3,7 +3,7 @@ type: lessons
 owner: Shared
 status: active
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: everyone
 ---
 

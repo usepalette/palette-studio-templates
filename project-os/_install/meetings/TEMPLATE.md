@@ -2,7 +2,7 @@
 type: meeting
 date: YYYY-MM-DD
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 ---
 
 # _Meeting topic_
