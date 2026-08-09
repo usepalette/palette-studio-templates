@@ -84,7 +84,7 @@ Copy the shape from the root `lessons.md` / `log.md` (header + convention note),
 
 ### 4. Only if the space needs its own `AGENTS.md`
 
-If step 5 of Inputs said yes, create `<slug>/AGENTS.md` — minimal frontmatter (`type: doc` only; it's a behavior file, not a tracked document), then `# {slug}`, a line linking the root `../AGENTS.md` ("company-wide rules live there; this layers on top; root always applies"), then the local behavioral rules and a nav table. Keep it lean and behavioral — routine placement belongs in the README.
+If step 5 of Inputs said yes, create `<slug>/AGENTS.md` — the full frontmatter block (`type: doc`, `owner`, `status`, `last_updated`, `last_updated_by`, `edit_policy` matching the space's README), then `# {slug}`, a line linking the root `../AGENTS.md` ("company-wide rules live there; this layers on top; root always applies"), then the local behavioral rules and a nav table. Keep it lean and behavioral — routine placement belongs in the README.
 
 Then create the three thin vendor pointers so every host loads the local rules. Use this exact adapter text (swap the header per agent):
 
