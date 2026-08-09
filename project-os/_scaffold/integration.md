@@ -30,7 +30,9 @@ dashboard works the moment they open it. Every sample file is flagged `sample: t
      sample banner is now gone).
    - What's intentionally still light — `meetings/`, `decisions/`, `research/` fill up as the
      project runs, via `/new-meeting` and `/new-decision`.
-   - The weekly habit: `/finish-session` each session and `/workspace-heal` to keep it clean.
+   - The upkeep habits: `/finish-session` after any meaningful work session (it captures the
+     memory line, so skipping it loses that session's context), and `/workspace-heal` weekly to
+     keep the structure clean.
 
 ## Notes
 
