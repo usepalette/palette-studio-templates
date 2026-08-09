@@ -1,3 +1,12 @@
+---
+type: index
+owner: "[Owner]"
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
+---
+
 # Playbooks
 
 How we think about things. The team's shared brain.
@@ -11,7 +20,8 @@ Each playbook is a markdown file named by domain:
 ```
 playbooks/
 ├── sales.md     # how we think about selling
-└── content.md   # how we think about content
+├── content.md   # how we think about content
+└── launch.md    # how we run a feature launch (pairs with templates/launch/)
 ```
 
 A playbook typically covers:

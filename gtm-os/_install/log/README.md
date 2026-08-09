@@ -1,28 +1,21 @@
-# Log
+---
+type: index
+owner: "[Owner]"
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
+---
 
-Institutional memory. What happened, what was decided, what was learned.
+# log/
 
-## Structure
+Fuller **session recaps** — the richer memory superset. The one-line record lives at the root: `lessons.md` (what to do differently) and `log.md` (what happened + decisions). This folder holds the longer write-ups worth keeping from a meaningful session.
 
-```
-log/
-├── overview.md    # running record — the file you read to catch up
-└── sessions/      # per-session recaps — reference material
-```
+`/finish-session` appends the one-liners to the root files and, for a meaningful session, drops a full recap here.
 
-## overview.md
+## Session recaps (`sessions/`)
 
-Reverse-chronological. Three sections:
-
-- **Decisions** — Forks in the road where you chose A over B, and why
-- **Learnings** — Things discovered that should inform future work
-- **Log** — What happened (most entries land here)
-
-Format: `**YYYY-MM-DD** — Description.`
-
-## Session recaps
-
-One file per work session in `sessions/`. Format:
+One file per work session, named `YYYY-MM-DD-slug.md`:
 
 ```markdown
 # {Title} — YYYY-MM-DD
@@ -31,22 +24,19 @@ One file per work session in `sessions/`. Format:
 2-3 sentences. What was the goal, what got done.
 
 ## Decisions
-Choices that were made and why. Skip obvious ones.
+Choices made and why. Skip obvious ones.
 
 ## What changed
 Files created, moved, or significantly edited.
 
 ## Context surfaced
-Market intel, competitor info, user feedback, strategic insight.
-Skip if nothing notable.
+Market intel, competitor info, user feedback, strategic insight. Skip if nothing notable.
 
 ## Open threads
-Unfinished work, known issues, things to pick up next.
-Skip if clean.
+Unfinished work, known issues, things to pick up next. Skip if clean.
 ```
 
 ## When to log
 
-- After any session that makes decisions or surfaces insights
+- After any session that makes decisions or surfaces insights (via `/finish-session`)
 - Skip for quick fixes or single-file edits
-- When in doubt, log it — future you will thank present you

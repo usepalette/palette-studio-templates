@@ -1,52 +1,46 @@
 # Presentations
 
-Go from a rough idea to a polished deck without leaving your editor — a sales
-pitch, a product review, a team update, or a conference talk. Draft in
-markdown, generate a self-contained HTML slide deck, and keep a running log of
-the presentations you've given.
+Go from a rough idea to a finished deck without leaving your editor. Draft a
+sales pitch, product review, team update, or conference talk in Markdown, then
+generate a self-contained HTML presentation and keep a record of what you
+presented.
 
 ## What you get
 
-- **`/presentation` skill** — the one entry point. Modes for starting a
-  draft, refining it, generating slides, logging a presentation, and listing
-  your decks. Invoke it explicitly (`/presentation new "..."`) or just ask
-  ("turn this draft into slides").
-- **`presentations/drafts/`** — presentations as markdown: key message, timed
-  outline, and per-slide notes. The thinking stage before any slides exist.
-- **`presentations/slides/template.html`** — a single-file HTML deck
-  template. No build step, no dependencies. Open it in a browser and you get:
+- **Story-first drafts.** Start with one key message, a timed outline, and
+  slide-by-slide notes before designing the deck.
+- **Self-contained HTML decks.** Open a generated presentation directly in a
+  browser. It includes:
   - keyboard navigation, click-to-advance, fullscreen
   - a dark/light theme toggle that syncs across windows
-  - a **presenter view** (`N`) with current/next preview, speaker notes, and
-    a timer
-  - **PDF export** straight from the browser's print dialog
-- **`presentations/snippets.md`** — your reusable slides (intro, company,
-  team, CTA), personalized at install, dropped into any deck on demand.
-- **`presentations.md`** — a log of presentations you've given.
+  - a presenter view with current and next slide previews, speaker notes, and a timer
+  - PDF export from the browser's print dialog
+- **Reusable branded slides.** Keep company, team, introduction, and closing
+  material ready for future decks.
+- **A presentation history.** Keep a simple record of presentations you have
+  given.
+- **One focused workflow.** Ask an agent to start a draft, refine the story,
+  generate slides, or log a presentation.
 
-## How install works
+## How setup works
 
 When you install this workflow, an agent will:
 
-1. Confirm where the `presentations/` workspace should live (defaults to the
-   project root; offers to move it if you have an obvious home for it).
-2. Personalize `snippets.md` — pulling your name, role, company, and team
-   from the Palette MCP or project files where it can, and asking you for the
-   rest in one short round.
+1. Confirm where the presentation workspace should live.
+2. Use available company, team, and personal context to personalize the
+   reusable slides.
+3. Ask one short round of questions for anything important that is missing.
 
-The skill and the HTML template are placed as-is — no customization needed.
-Palette Desktop creates a checkpoint right before install so you can revert.
+Palette Desktop creates a checkpoint right before installation, so you can
+restore the folder if you want to start over.
 
-## After install
+## Work with it naturally
 
-```bash
-/presentation new "Q3 Pipeline Review"      # start a draft
-/presentation draft q3-pipeline-review       # refine the outline
-/presentation slides q3-pipeline-review      # generate the HTML deck
-/presentation log                            # log a presentation you gave
-/presentation list                           # see everything
-```
+- "Help me shape a 20-minute Q3 pipeline review for the leadership team."
+- "Tighten the story in this presentation draft."
+- "Turn the approved draft into slides."
+- "Log the presentation I gave today."
+- "Show me our recent decks."
 
-Open the generated `presentations/slides/<slug>.html` in a browser, press
-`F` for fullscreen and `N` for presenter view. To export a PDF, use the
-browser's print dialog.
+Open a generated deck in a browser, press `F` for fullscreen or `N` for
+presenter view, and use the print dialog when you need a PDF.

@@ -1,3 +1,12 @@
+---
+type: index
+owner: "[Owner]"
+status: active
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
+---
+
 # Brand
 
 How the company communicates externally. Voice, messaging, positioning, and design.

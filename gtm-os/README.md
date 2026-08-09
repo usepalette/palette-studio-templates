@@ -1,19 +1,44 @@
-# GTM-OS
+# GTM OS
 
-Your GTM as a file system.
+Your go-to-market as a file system: one folder of markdown for your brand, market, strategy,
+playbooks, accounts, team context, and active work.
 
-A folder structure for go-to-market teams — foundations, work, accounts, playbooks, team, and a log of what happened. Designed to work standalone, but really shines with Claude Code: every folder has a README explaining what belongs there, and there are slash commands for onboarding and review.
+Built for founders and commercial teams that want the same GTM context to support sales,
+marketing, customer work, and different supported agents.
 
-## What's inside
+## What you get
 
-- `foundations/` — what you know (brand, market, strategy, product marketing)
-- `work/` — what you're doing (campaigns, projects, research, content)
-- `accounts/` — customer accounts with context, strategy, and materials
-- `playbooks/` — how you think about each domain
-- `team/` — one folder per person
-- `log/` — institutional memory (decisions, learnings, recaps)
-- `.claude/commands/` — `/onboard`, `/review`
+- **Stable GTM foundations** for brand, market, strategy, and product marketing, kept close to
+  the campaigns, accounts, playbooks, and content they shape.
+- **Works with different AI agents.** Shared instructions help Claude Code, Codex, Gemini,
+  Mistral, and other supported agents follow the same GTM rules and history.
+- **Four ways to bring in existing context.** Start from Palette's Context Library, documents
+  in `_inbox/`, exports from other AI tools, or one short conversation.
+- **Lessons, decisions, and session history** stay in the folder for the next person and the
+  next agent.
+- **Built-in workflows** cover onboarding, accounts, teammates, reviews, and upkeep.
 
-## After install
+## How setup works
 
-Run `/onboard` in Claude Code. It walks through your company, product, and team to fill the templates in.
+GTM OS starts as a blank folder structure. Say **"set me up"** and choose the easiest source:
+
+- Use connected context such as Palette's Context Library.
+- Drop positioning documents, sales decks, research, or account exports into `_inbox/`.
+- Use the built-in prompt to bring useful context over from ChatGPT, Claude, Notion, or
+  another tool.
+- Answer one short round of questions about your company, market, brand, and team.
+
+The agent sorts the material into foundations, accounts, playbooks, team context, and active
+work, then confirms any gaps before it writes. Palette Desktop creates a checkpoint first,
+so you can undo.
+
+## Work from the same GTM context
+
+Open the folder with Claude Code, Codex, Gemini, or another supported agent. Each one can use
+the same positioning, voice, account history, playbooks, and team decisions.
+
+- "Prepare me for the Acme call using our account history and sales approach."
+- "Turn this product update into launch messaging for our audience and voice."
+- "Help me bring our positioning, brand voice, and campaign history over from Notion."
+
+Everything is plain markdown you can read and edit, with or without Palette.

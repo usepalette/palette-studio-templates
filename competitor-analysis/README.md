@@ -1,40 +1,37 @@
 # Competitor Analysis
 
-Track competitors with structure: a landscape doc, per-competitor profiles,
-and skills that handle research and adding new entries.
+Track a changing market with a shared landscape, consistent competitor
+profiles, sourced research, and a repeatable way to add or refresh companies.
 
 ## What you get
 
-- **`landscape.md`** — the synthesis: tier table, threat assessment, your
-  structural advantages, open research questions.
-- **`competitors/`** — one profile per competitor, following a consistent
-  template (positioning, pricing, strengths, weaknesses, threat level,
-  sources).
-- **`competitor-research` skill** — knows where profiles live, how to
-  research a competitor, and how to format the output. Auto-invoked when
-  you're working on competitor profiles.
-- **`add-competitor` skill** — invokable as `/add-competitor` or just by
-  asking "add Acme as a competitor."
+- **A market landscape.** Keep market tiers, threats, structural advantages,
+  and open research questions in one place.
+- **Consistent competitor profiles.** Each company follows the same format
+  for positioning, pricing, strengths, weaknesses, threat level, and sources.
+- **Sourced research.** Profiles carry dated evidence, so claims are easier
+  to check and refresh.
+- **A focused competitor workflow.** Ask an agent to research a company, add
+  its profile, compare competitors, or update the wider landscape.
 
-## How install works
+## How setup works
 
 When you install this workflow, an agent will ask:
 
-1. Where should the market folder live? (suggests `gtm/foundations/market/`,
-   but defers if you already have a research or strategy folder.)
-2. What's your product/company name? (pulled from the Palette MCP if
-   available, otherwise asked.)
-3. Which 2–5 competitors should we seed?
-4. Should we research the seeded competitors now, or leave them as
-   placeholders for later? (You can fill placeholders in any time with
-   `/add-competitor <name>`.)
+1. Where the market folder should live.
+2. Which product or company the research is for.
+3. Which two to five competitors to start with.
+4. Whether to research them now or leave clear placeholders for later.
 
-Then it writes everything into your project. Palette Desktop creates a checkpoint
-right before the install so you can revert from the timeline if you want
-to start over.
+Palette Desktop creates a checkpoint right before installation, so you can
+restore the folder if you want to start over.
 
-## After install
+## Work with it naturally
 
-Run `/add-competitor` whenever you want to track another competitor — or
-just say it in natural language. The skill handles the research, writes
-the profile, and updates `landscape.md` so the synthesis stays in sync.
+- "Add Acme to our competitor landscape."
+- "Refresh Globex's profile before our positioning review."
+- "Compare Acme and Globex using our existing research."
+- "What changed in our market landscape?"
+
+When a profile changes the wider market view, the workflow updates the
+landscape too.

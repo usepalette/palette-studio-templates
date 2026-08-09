@@ -1,0 +1,5 @@
+# OS noise and runtime artifacts
+.DS_Store
+**/.DS_Store
+**/.playwright-mcp/
+**/*.tmp

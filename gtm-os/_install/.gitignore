@@ -1,0 +1,9 @@
+# OS noise — runtime artifacts and OS cruft, not knowledge
+.DS_Store
+**/.DS_Store
+
+# Browser-automation (Playwright MCP) runtime cache — not real content
+**/.playwright-mcp/
+
+# Common scratch/export artifacts
+**/*.tmp

@@ -1,14 +1,14 @@
 name: Presentations
 slug: presentations
 type: workflow
-version: 1.0.1
+version: 1.0.2
 author: Palette
-description: A presentation system for any role — draft sales pitches, product reviews, team updates, or conference talks in markdown, generate polished self-contained HTML slide decks (presenter notes, theme toggle, PDF export), and keep a log of past presentations. Driven by a /presentation skill.
+description: A presentation workflow for any role. Shape the story in Markdown, then generate self-contained HTML slide decks with presenter notes, themes, and browser-based PDF export.
 logo: logo.png
 tags: [presentations, slides, decks, sales, writing, content, productivity]
 license: MIT
 
 notes: |
-  After install, run /presentation new "<title>" to start your first draft,
-  then /presentation slides <slug> to generate the HTML deck. Your reusable
-  intro/company/team/CTA slides are personalized into snippets.md at install.
+  After install, ask your agent to start a draft, refine the story, generate
+  slides, or log a presentation. Your reusable company, team, introduction,
+  and closing slides are personalized into snippets.md.

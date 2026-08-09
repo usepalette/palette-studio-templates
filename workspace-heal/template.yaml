@@ -1,0 +1,14 @@
+name: Workspace Heal
+slug: workspace-heal
+type: workflow
+version: 1.0.3
+author: Palette
+description: A workspace maintenance workflow that checks broken links, stale indexes, unfinished setup, and instruction drift. It reports what is wrong, what is safe to fix, and what needs your judgment without imposing a folder structure.
+logo: logo.png
+tags: [workspace, maintenance, audit, markdown, agents, hygiene]
+license: MIT
+
+notes: |
+  Ask your agent to check the workspace for a read-only report. When you are
+  ready, ask it to repair safe structural issues and review anything that
+  needs judgment. It asks before broad or external changes.

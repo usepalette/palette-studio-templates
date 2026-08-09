@@ -1,0 +1,20 @@
+name: Company OS
+slug: company-os
+type: folder
+version: 1.0.6
+author: Palette
+description: >-
+  Your whole company as a file system: accounts, go-to-market, product, engineering,
+  operations, and people in one folder of Markdown. Your team and different supported agents
+  can work from the same company context, instructions, decisions, and lessons.
+logo: logo.png
+tags: [company, operating-system, ai-native, knowledge-base, gtm, product, workspace]
+license: MIT
+
+requires:
+  palette_desktop: ">=0.5"
+
+notes: |
+  After install, say "set me up" to add your company, team, and brand. Bring
+  in connected context, drop existing documents into _inbox, paste useful
+  context from another AI tool, or answer one short round of questions.
