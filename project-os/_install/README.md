@@ -1,6 +1,10 @@
 ---
 type: index
+owner: "[Owner]"
 status: draft
+last_updated: YYYY-MM-DD
+last_updated_by: "[Owner]"
+edit_policy: everyone
 ---
 
 # Project OS Template
@@ -113,10 +117,10 @@ During `/onboard`, **replace this whole landing page with the short router below
 ```markdown
 ---
 type: index
-owner: [Owner]
+owner: "[Owner]"
 status: active
 last_updated: YYYY-MM-DD
-last_updated_by: [Owner]
+last_updated_by: "[Owner]"
 edit_policy: everyone
 ---
 

@@ -1,7 +1,7 @@
 name: Project OS
 slug: project-os
 type: folder
-version: 1.0.0
+version: 1.0.1
 author: Palette
 description: >-
   A single project as a file system — one folder your whole team, your client, and every
